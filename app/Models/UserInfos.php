@@ -156,61 +156,6 @@ class UserInfos extends Authenticatable
         return $this->where('id', $admin_user_info_id)->update(['access_right' => $access_right]);
     }
 
-    public function getUserInfoByUserId($user_id)
-    {
-        return $this->whereHas('admin', function($query) use ($user_id) {
-            return $query->when($user_id, function($query) use ($user_id) {
-                return $query->where('id', $user_id);
-            });
-        })->first();
-    }
-
-    public function getSlackUserInfos($userData)
-    {
-        return $this->withTrashed()->whereNotNull('id')->firstOrNew(['slack_user_id' => $userData->id]);
-    }
-
-    public function restoreDeletedUserInfo($slackId)
-    {
-        DB::transaction(function() use($slackId) {
-            $this->withTrashed()->where('slack_user_id', $slackId)->update(['deleted_at' => null]);
-        });
-        return $this->where('slack_user_id', $slackId)->get()[0];
-    }
-
-    public function saveUserInfos($userInfo, $firstName, $lastName, $userData)
-    {
-        $userInfo->first_name = $firstName;
-        $userInfo->last_name = $lastName;
-        $userInfo->email = $userData->email;
-        $userInfo->slack_user_id = $userData->id;
-        $userInfo->save();
-        return $userInfo;
-    }
-
-    public function getCheckColumn($userId)
-    {
-        $checkColumn = $this->where('id', $userId)->first();
-        $requiredColumn = [
-            'tel' => $checkColumn->tel,
-            'sex' => $checkColumn->sex,
-            'birthday' => $checkColumn->birthday,
-            'hire_date' => $checkColumn->hire_date,
-            'store_id' => $checkColumn->store_id,
-            'is_registered' => $checkColumn->is_registered
-        ];
-
-        if (!empty($requiredColumn['birthday'])) {
-            $requiredColumn['birthday'] = Carbon::parse($requiredColumn['birthday'])->format('Y-m-d');
-        }
-
-        if (!empty($requiredColumn['hire_date'])) {
-             $requiredColumn['hire_date'] = Carbon::parse($requiredColumn['hire_date'])->format('Y-m-d');
-        }
-
-        return $requiredColumn;
-    }
-
     public function updateIsRegistered($userId)
     {
         DB::transaction(function() use($userId) {

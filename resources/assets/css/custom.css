@@ -794,3 +794,28 @@ form.user-search {
   text-align: left !important;
 }
 
+.nav-user {
+  margin-top: 12px;
+}
+
+.dropdown {
+  display: inline-block;
+  top: 2px;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: #fff;
+}
+
+.user-name-box {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.user-name-box > img {
+  width: 30px;
+  border-radius: 50%;
+}
+

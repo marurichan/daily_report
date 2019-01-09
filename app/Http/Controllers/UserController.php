@@ -3,46 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserInfos;
+use App\Models\User;
 use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    public $userInfosModel;
+    public $users;
 
-    public function __construct(UserInfos $userInfosModel)
+    public function __construct(User $users)
     {
         $this->middleware('auth');
-        $this->userInfosModel = $userInfosModel;
+        $this->users = $users;
     }
 
     public function index()
     {
         $userId = Auth::id();
-        $requiredColumn = $this->userInfosModel->getCheckColumn($userId);
-
-        if ($requiredColumn['is_registered'] === 0) {
-            if (!empty($requiredColumn['tel']) &&
-                !empty($requiredColumn['sex']) &&
-                !empty($requiredColumn['store_id']) &&
-                !empty($requiredColumn['birthday']) &&
-                !empty($requiredColumn['hire_date'])) {
-                $this->userInfosModel->updateIsRegistered($userId, $requiredColumn);
-                $requiredColumn['is_registered'] = 1;
-            }
-
-            return view('index', compact('requiredColumn'));
-        }
-
-        if (empty($requiredColumn['tel']) ||
-            empty($requiredColumn['sex']) ||
-            empty($requiredColumn['store_id']) ||
-            empty($requiredColumn['birthday']) ||
-            empty($requiredColumn['hire_date'])) {
-            $requiredColumn['is_registered'] = 0;
-        } 
-
-        return view('index', compact('requiredColumn'));
+        $userInfos = $this->users->find($userId);
+        return view('index', compact('userInfos'));
     }
 
     public function update(UpdateUserRequest $request)

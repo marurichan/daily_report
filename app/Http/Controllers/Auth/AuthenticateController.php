@@ -6,24 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserInfos;
 use App\Models\User;
 
 
 class AuthenticateController extends Controller
 {
-    protected $userInfos;
     protected $users;
 
-    public function __construct(UserInfos $userInfos, User $users)
+    public function __construct(User $users)
     {
-        $this->userInfos = $userInfos;
         $this->users = $users;
     }
 
     public function slackAuth()
     {
-        return Socialite::with('slack')->scopes(['identity.basic', 'identity.email', 'identity.avatar'])->redirect();
+        return Socialite::with('slack')->scopes([
+            'identity.basic',
+            'identity.email',
+            'identity.avatar',
+        ])->redirect();
     }
 
     public function userinfo()
@@ -32,29 +33,17 @@ class AuthenticateController extends Controller
             return redirect('/');
         };
 
-        $userData = Socialite::with('slack')->user();
-        list($firstName, $lastName) = $this->splitUserName($userData->name);
+        $slackUserInfos = Socialite::with('slack')->user();
+        $userInstance = $this->users->createUserInstance($slackUserInfos->id);
 
-        $userInfo = $this->userInfos->getSlackUserInfos($userData);
-        if ($userInfo['deleted_at'] === null) {
-            $savedUserInfo = $this->userInfos->saveUserInfos($userInfo, $firstName, $lastName, $userData);
-        } else {
-            $savedUserInfo = $this->userInfos->restoreDeletedUserInfo($userInfo['slack_user_id']);
-            $this->users->restoreDeletedUser($savedUserInfo->id);
+        if ($userInstance['deleted_at'] !== null) {
+            $this->users->restoreDeletedUser($slackUserInfos->id);
         }
-        $user = $this->users->getSlackUsers($savedUserInfo->id);
-        $savedUser = $this->users->saveUser($user, $userData, $savedUserInfo->id);
+        $this->users->saveUserInfos($userInstance, $slackUserInfos);
 
-        Auth::login($savedUser);
+        $loginUser = $this->users->where('slack_user_id', $slackUserInfos->id)->first();
+        Auth::login($loginUser);
         return redirect('/');
-    }
-
-    public function splitUserName($fullName)
-    {
-        $splitName = explode(" ", $fullName);
-        $firstName = $splitName[0];
-        $lastName = end($splitName);
-        return [$firstName, $lastName];
     }
 
 }

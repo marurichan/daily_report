@@ -14,11 +14,11 @@
 Auth::routes();
 Route::group(['prefix' => '/'], function() {
   Route::get('/', function () {
-    if (Auth::check()){
-      return redirect()->route('home');
-    }else{
-      return view('auth/login');
-    };
+      if (Auth::check()) {
+          return redirect()->route('home');
+      } else {
+          return view('auth/login');
+      };
   });
   Route::get('slack/login', 'Auth\AuthenticateController@slackAuth');
   Route::get('callback', 'Auth\AuthenticateController@userinfo');

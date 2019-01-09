@@ -13,12 +13,12 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
-        'password',
-        'user_info_id',
+        'slack_user_id',
+        'email',
+        'avatar',
     ];
 
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -64,18 +64,28 @@ class User extends Authenticatable
         }
     }
 
+
+
+
+
+    public function createUserInstance($slackId)
+    {
+        return $this->withTrashed()->whereNotNull('id')->firstOrNew(['slack_user_id' => $slackId]);
+    }
+
     public function getSlackUsers($userInfoId)
     {
         return $this->firstOrNew(['user_info_id' => $userInfoId]);
     }
 
-    public function saveUser($user, $userData, $userInfoId)
+    public function saveUserInfos($users, $slackUserInfos)
     {
-        $user->name = $userData->name;
-        $user->password = $userData->id;
-        $user->user_info_id = $userInfoId;
-        $user->save();
-        return $user;
+        $users->fill([
+            'name'          => $slackUserInfos->name,
+            'slack_user_id' => $slackUserInfos->id,
+            'email'         => $slackUserInfos->email,
+            'avatar'        => $slackUserInfos->avatar,
+        ])->save();
     }
 
     public function restoreDeletedUser($userInfoId)
