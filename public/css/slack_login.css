@@ -1,0 +1,78 @@
+*:focus {
+  outline: none;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-btn {
+  opacity: .6;
+  border: none;
+  padding: 0;
+  border-radius: 12px;
+}
+
+.login-btn:hover {
+  opacity: 1;
+  box-shadow: 0 0 30px #fff;
+}
+
+.login-btn img {
+  width: 250px;
+}
+
+.login-btn:active {
+  position: relative;
+  top: 2px;
+}
+
+.login-wrap {
+  width: 500px;
+  height: 250px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.login-wrap .box-title {
+  font-size: 3em;
+  border-radius: 10px 10px 0 0;
+  background-image: linear-gradient(120deg, #84fab0 0%, #30B490 100%);
+  padding: 4px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+h2 {
+  background: url(/image/gizumo_icon_360.jpg) no-repeat 12px 0px/20px;
+  text-align: left;
+  padding-left: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login-box {
+  text-align: center;
+}
+
+.attention-box {
+  padding: 0.5em 1em;
+  margin: 1.5em;
+  border-left: solid 10px #30b490;
+}
+
+.attention-box p {
+  margin: 0; 
+  padding: 0;
+}
+
