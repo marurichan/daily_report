@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('slack_user_id');
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
-            $table->timestamp('register_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
