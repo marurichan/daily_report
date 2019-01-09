@@ -1,27 +1,32 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
   public function run()
   {
-    User::truncate();
-    User::create([
-      'name' => 'test',
-      'password' => bcrypt('1234'),
-      'user_info_id' => 1
-    ]);
-    User::create([
-      'name' => 'test1',
-      'password' => bcrypt('1234'),
-      'user_info_id' => 2
-    ]);
-    User::create([
-      'name' => 'test2',
-      'password' => bcrypt('1234'),
-      'user_info_id' => 3
+    DB::table('users')->truncate();
+    DB::table('users')->insert([
+        [
+            'name'          => '坂田 聖史',
+            'slack_user_id' => 'AAAAAAAAA',
+            'email'         => 'hoge@gmail.com',
+            'register_date' => '2017-12-3',
+        ],
+        [
+            'name'          => '安藤 大地',
+            'slack_user_id' => 'BBBBBBBBB',
+            'email'         => 'fuga@gmail.com',
+            'register_date' => '2017-04-3',
+        ],
+        [
+            'name'          => '金谷 翔平',
+            'slack_user_id' => 'CCCCCCCCC',
+            'email'         => 'foo@gmail.com',
+            'register_date' => '2017-07-16',
+        ]
     ]);
   }
 }
+

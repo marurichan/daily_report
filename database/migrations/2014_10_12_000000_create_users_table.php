@@ -16,8 +16,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('password');
-            $table->integer('user_info_id');
+            $table->string('slack_user_id');
+            $table->string('email')->unique();
+            $table->string('avatar')->nullable();
+            $table->timestamp('register_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
@@ -34,3 +36,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
+
