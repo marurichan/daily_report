@@ -32,16 +32,6 @@ class UserInfos extends Authenticatable
 
     protected $dates = ['deleted_at'];
 
-    public function store ()
-    {
-        return $this->belongsTo('App\Models\Stores');
-    }
-
-    public function user()
-    {
-        return $this->hasOne('App\Models\User','user_info_id');
-    }
-
     public function admin()
     {
         return $this->hasOne('App\Models\AdminUsers', 'user_info_id');

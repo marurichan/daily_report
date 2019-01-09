@@ -16,11 +16,6 @@ class ItemCategory extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function item()
-    {
-        return $this->belongsTo(Items::class, 'id', 'item_category_id');
-    }
-
     public function createItemCategory($data)
     {
         $this->create([

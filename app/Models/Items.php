@@ -18,11 +18,6 @@ class Items extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function category()
-    {
-        return $this->belongsTo(ItemCategory::class, 'item_category_id');
-    }
-
     public function scopeWhereName($query, $field, $name)
     {
         if (!$field || !$name) {

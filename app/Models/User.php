@@ -22,15 +22,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $touches = [
-        'info'
-    ];
-
-    public function info()
-    {
-        return $this->belongsTo('App\Models\UserInfos', 'user_info_id');
-    }
-
     public function dailyReport()
     {
         return $this->hasMany('App\Models\DailyReports', 'user_id');

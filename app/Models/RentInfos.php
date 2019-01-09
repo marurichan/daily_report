@@ -22,9 +22,5 @@ class RentInfos extends Model
         return $this->belongsTo('App\Models\AdminUsers', 'admin_user_id');
     }
 
-    public function item()
-    {
-        return $this->belongsTo('App\Models\Items');
-    }
 }
 
