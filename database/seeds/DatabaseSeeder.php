@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             AdminUsersTableSeeder::class,
             UsersTableSeeder::class,
             DailyReportsTableSeeder::class,
-            TagCategoriesSeeder::class
+            TagCategoriesSeeder::class,
+            QuestionsTableSeeder::class
         ]);
     }
 }

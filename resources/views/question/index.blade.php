@@ -5,9 +5,19 @@
 
 <div class="main-wrap">
   <div class="btn-wrapper">
-    <a class="btn" href="{{ route('question.create') }}">質問投稿</a>
-    <a class="btn" href="{{ route('question.mypage') }}">マイページ</a>
-    <a class="btn" href="#openModal">質問を検索</a>
+    <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    <a class="btn" href="{{ route('question.mypage') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
+    <a class="btn" href="#openModal"><i class="fa fa-search" aria-hidden="true"></i></a>
+  </div>
+  <div class="category-wrap">
+    {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
+      {!! Form::input('hidden', 'tag_category_id', '0') !!}
+      {!! Form::input('submit', 'category_name', 'ALL', ['class' => 'btn all']) !!}
+      @foreach ($categories as $category)
+        {!! Form::input('hidden', 'tag_category_id', $category->id) !!}
+        {!! Form::input('submit', 'category_name', $category->name, ['class' => 'btn '.$category->name]) !!}
+      @endforeach
+    {!! Form::close() !!}
   </div>
   
   <div id="openModal" class="modalDialog">
@@ -61,26 +71,33 @@
     </div>
   </div>
   
-  <div class="content-wrap">
-    <table class="table table-hover todo-table">
+  <div class="content-wrapper table-responsive">
+    <table class="table table-striped">
       <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>カテゴリ</th>
-          <th>解答</th>
+        <tr class="row">
+          <th class="col-xs-1">user</th>
+          <th class="col-xs-2">category</th>
+          <th class="col-xs-6">title</th>
+          <th class="col-xs-1">comments</th>
+          <th class="col-xs-2"></th>
         </tr>
       </thead>
       <tbody>
         @foreach($questions as $question)
-          <tr>
-            <td>{{ $question->title }}</td>
-            <td>{{ $question->category->name }}</td>
+          <tr class="row">
+            <td class="col-xs-1"><img src="{{ Auth::user()->avatar }}" style="width: 30px; border-radius: 50%;"></td>
+            <td class="col-xs-2">{{ $question->category->name }}</td>
+            <td class="col-xs-6">{{ $question->title }}</td>
             @if(!empty($question->answer))
-            <td>済</td>
+              <td class="col-xs-1">済</td>
             @else
-            <td><span class="point_color">未</span></td>
+              <td class="col-xs-1"><span class="point_color">未</span></td>
             @endif
-            <td><a class="btn btn-success" href="question/{{ $question->id }}">確認する</a></td>
+            <td class="col-xs-2">
+              <a class="btn btn-success" href="question/{{ $question->id }}">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+              </a>
+            </td>
           </tr>
         @endforeach
       </tbody>

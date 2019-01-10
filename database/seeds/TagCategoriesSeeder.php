@@ -1,35 +1,26 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\TagCategory;
 
 class TagCategoriesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-      TagCategory::truncate();
-      TagCategory::create(
-          [
-            'name' => 'フロント',
-          ]
-      );
-
-      TagCategory::create(
-          [
-            'name' => 'バック',
-          ]
-      );
-
-
-      TagCategory::create(
-          [
-            'name' => 'その他',
-          ]
-      );
+        DB::table('tag_categories')->truncate();
+        DB::table('tag_categories')->insert([
+            [
+                'name' => 'front',
+            ],
+            [
+                'name' => 'back',
+            ],
+            [
+                'name' => 'infra',
+            ],
+            [
+                'name' => 'others',
+            ],
+        ]);
     }
 }
+
