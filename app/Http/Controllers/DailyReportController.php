@@ -9,118 +9,67 @@ use Illuminate\Support\Facades\Auth;
 
 class DailyReportController extends Controller
 {
+    protected $report;
 
-  protected $report;
-
-  public function __construct(DailyReports $report)
-  {
-      $this->middleware('auth');
-      $this->report = $report;
-  }
+    public function __construct(DailyReports $report)
+    {
+        $this->middleware('auth');
+        $this->report = $report;
+    }
 
     /**
-      * Display a listing of the resource.
-      *
-      * @return \Illuminate\Http\Response
+      * 日報一覧表示
+      * 検索条件($inputs)がないときは全件取得、あるときは条件に当てはまる日報を取得
       */
     public function index(Request $request)
     {
+        $userId = Auth::id();
         $inputs = $request->all();
-        $inputs['id'] = Auth::id();
 
-        //ユーザーからのインプットを正常化
-        $inputs = $this->report->normalizeInputs($inputs);
-
-        // あるユーザーのレポート情報を日付の範囲を指定し、contentsを取得。
-        $reports = $this->report->getReportsByDateRange($inputs);
+        if (empty($inputs)) {
+            $reports = $this->report->getAllPersonalReports($userId);
+        } else {
+            $reports = $this->report->getSearchingPersonalReports($userId, $inputs);
+        }
 
         return view('daily_report.index', compact('reports'));
     }
 
-    /**
-      * Store a newly created resource in storage.
-      *
-      * @param  \Illuminate\Http\Request  $request
-      * @return \Illuminate\Http\Response
-      */
+    public function create()
+    {
+        return view('daily_report.create');
+    }
+
     public function store(DailyReportRequest $request)
     {
-        $userId = Auth::id();
-
-        $input = $request->all();
-        $this->report->create([
-            'user_id' => $userId,
-            'reporting_time' => $input['date'],
-            'title' => $input['title'],
-            'contents' =>$input['contents'],
-        ]);
-
+        $inputs = $request->all();
+        $this->report->create($inputs);
         return redirect()->to('report');
     }
 
-    /**
-      * Display the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
     public function show($id)
     {
         $report = $this->report->find($id);
         return view('daily_report.show', compact('report'));
     }
 
-    /**
-      * Show the form for editing the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
     public function edit($id)
     {
         $report = $this->report->find($id);
         return view('daily_report.edit', compact('report'));
     }
 
-    /**
-      * Update the specified resource in storage.
-      *
-      * @param  \Illuminate\Http\Request  $request
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-    public function update(DailyReportRequest $request, $id)
+    public function update(DailyReportRequest $request, $reportId)
     {
-        $userId = Auth::id();
-        $input = $request->all();
-        $this->report->update([
-            'user_id'        => $userId,
-            'reporting_time' => $input['date'],
-            'title'          => $input['title'],
-            'contents'       => $input['contents'],
-        ],$id);
-
+        $inputs = $request->all();
+        $this->report->find($reportId)->fill($inputs)->save();
         return redirect()->to('report');
     }
 
-    /**
-      * Remove the specified resource from storage.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
     public function destroy($id)
     {
-
-        $data = $this->report->find($id);
-        $data->delete();
-
+        $this->report->find($id)->delete();
         return redirect()->to('report');
-    }
-
-    public function create()
-    {
-        return view('daily_report.create');
     }
 
 }

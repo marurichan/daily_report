@@ -1,7 +1,7 @@
 <?php
 //日報の日付をstringからdatetimeに変換
  $reporting_time = date("Y-m-d", strtotime($report->reporting_time));
- ?>
+?>
 
 @extends('partials.outline')
 @section('content')
@@ -11,8 +11,9 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => ['report.update', $report->id], 'method' => 'PUT']) !!}
+      {!! Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) !!}
       <div class="form-group form-size-small @if(!empty($errors->first('date'))) has-error @endif">
-        {{ Form::input('date', 'date', $reporting_time, ['class' => 'form-control']) }}
+        {{ Form::input('date', 'reporting_time', $reporting_time, ['class' => 'form-control']) }}
         <span class="help-block">{{$errors->first('date')}}</span>
       </div>
       <div class="form-group @if(!empty($errors->first('title'))) has-error @endif">

@@ -23,13 +23,13 @@
             </td>
             <td class="search-td"></td>
             <td class="search-td">
-              {!! Form::input('date', 'start-date', null, ['class' => 'form-control']) !!}
+              {!! Form::input('date', 'from-date', null, ['class' => 'form-control']) !!}
             </td>
             <td class="search-td">
               <label>終わり</label>
             </td>
             <td class="search-td">
-              {!! Form::input('date', 'end-date', null, ['class' => 'form-control']) !!}
+              {!! Form::input('date', 'to-date', null, ['class' => 'form-control']) !!}
             </td>
           </tbody>
           <tfoot class="search-tfoot">
