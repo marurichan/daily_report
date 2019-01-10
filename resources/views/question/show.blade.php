@@ -1,35 +1,31 @@
-@extends('partials.user_nav')
-
+@extends('partials.outline')
 @section('content')
+
 <h1 class="brand-header">質問詳細</h1>
-<div class="container">
-  {!! Form::open(['route' => 'question.confirm', 'method' => 'post']) !!}
-  <ul class="dailyreport-info-list">
-    <li>
-      <h3>タイトル</h3>
-      {{ $questions->title }}
-    </li>
-    <li>
-      <h3>カテゴリ</h3>
-      {{ $questions->category->name }}
-    </li>
-    <li>
-      <h3>本文</h3>
-      {!! $questions->mark_content !!}
-    </li>
-    <li>
-      <h3>解答</h3>
-      @empty($questions->answer)
-      wait....
-      @endempty
-      {{ $questions->answer }}
-    </li>
-  </ul>
+<div class="main-wrap">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      {{ $questions->category->name }}&nbsp;&nbsp;の質問
     </div>
-    <div class="bottom-btn-wrapper">
-      <a href="{{ route('question.index') }}" class="bottom-btn">質問一覧へ</a>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+            <th class="table-column">Title</th>
+            <td class="td-text">{{ $questions->title }}</td>
+          </tr>
+          <tr>
+            <th class="table-column">Question</th>
+            <td class='td-text'>{!! $questions->mark_content !!}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  {!! Form::close() !!}
+  </div>
+  <div class="btn-bottom-wrapper left-side">
+    <a href="{{ route('question.index') }}" class="btn btn-success"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+  </div>
 </div>
 
 @endsection
+

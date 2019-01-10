@@ -1,6 +1,6 @@
-@extends('partials.user_nav')
-
+@extends('partials.outline')
 @section('content')
+
 <h1 class="brand-header">編集</h1>
 
 <div class="container">

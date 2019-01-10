@@ -1,6 +1,6 @@
-@extends('partials.user_nav')
-
+@extends('partials.outline')
 @section('content')
+
 <h2 class="brand-header">マイページ</h2>
 <div class="content-wrapper">
   <table class="margin__center text-align">
@@ -29,3 +29,4 @@
 </div>
 
 @endsection
+

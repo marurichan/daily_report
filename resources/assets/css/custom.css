@@ -480,6 +480,10 @@ a, a:focus, a:hover {
   text-align: right;
 }
 
+.btn-bottom-wrapper.left-side {
+  text-align: left;
+}
+
 .font-size {
   font-size: 40px;
   display: block;
@@ -790,7 +794,7 @@ form.user-search {
   width: 30%;
 }
 
-.report-column {
+.table-column {
   width: 150px;
 }
 
