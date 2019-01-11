@@ -88,11 +88,7 @@
             <td class="col-xs-1"><img src="{{ Auth::user()->avatar }}" style="width: 30px; border-radius: 50%;"></td>
             <td class="col-xs-2">{{ $question->category->name }}</td>
             <td class="col-xs-6">{{ $question->title }}</td>
-            @if(!empty($question->answer))
-              <td class="col-xs-1">済</td>
-            @else
-              <td class="col-xs-1"><span class="point_color">未</span></td>
-            @endif
+            <td class="col-xs-1"><span class="point_color">0 comments</span></td>
             <td class="col-xs-2">
               <a class="btn btn-success" href="question/{{ $question->id }}">
                 <i class="fa fa-comments-o" aria-hidden="true"></i>
