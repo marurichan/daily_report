@@ -13,7 +13,6 @@ class QuestionController extends Controller
 {
     protected $question;
     protected $category;
-    protected $wait;
 
     public function __construct(Questions $question, TagCategory $category)
     {
@@ -31,7 +30,6 @@ class QuestionController extends Controller
     {
         $categories = $this->category->all();
         $inputs = $request->all();
-
         if (empty($inputs['search']) && empty($inputs['tag_category_id'])) {
             $questions = $this->question->all();
         } else {

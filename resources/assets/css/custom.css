@@ -1,5 +1,6 @@
 .btn:focus,
-.btn:active:focus {
+.btn:active:focus,
+.search-icon:focus {
   outline: none;
 }
 
@@ -838,7 +839,7 @@ form.user-search {
   font-size: 0;
 }
 
-.category-wrap input {
+.category-wrap .btn {
   border-radius: 10px 10px 0 0;
   font-size: 10px;
   padding: 8px 20px;
@@ -847,55 +848,89 @@ form.user-search {
   color: #636b6f;
 }
 
-.category-wrap input:hover {
+.category-wrap .btn:hover {
   background-color: #fff!important;
   border-bottom: #fff!important;
   color: #636b6f;
 }
 
-.category-wrap input.all {
+.category-wrap .btn.all {
   background-color: #ffffb7;
   border: 2px solid #ffffb7;
 }
 
-.category-wrap input.front {
+.category-wrap .btn.front {
   background-color: #ffdbb7;
   border: 2px solid #ffdbb7;
 }
 
-.category-wrap input.back {
+.category-wrap .btn.back {
   background-color: #b7ffff;
   border: 2px solid #b7ffff;
 }
 
-.category-wrap input.infra {
+.category-wrap .btn.infra {
   background-color: #b7ffb7;
   border: 2px solid #b7ffb7;
 }
 
-.category-wrap input.others {
+.category-wrap .btn.others {
   background-color: #e2c6ff;
   border: 2px solid #e2c6ff;
 }
 
-.category-wrap input.all:hover {
+.category-wrap .btn.all:hover {
   border-color: #f0e68c;
 }
 
-.category-wrap input.front:hover {
+.category-wrap .btn.front:hover {
   border-color: #ffbf7f;
 }
 
-.category-wrap input.back:hover {
+.category-wrap .btn.back:hover {
   border-color: #afeeee;
 }
 
-.category-wrap input.infra:hover {
+.category-wrap .btn.infra:hover {
   border-color: #90ee90;
 }
 
-.category-wrap input.others:hover {
+.category-wrap .btn.others:hover {
   border-color: #bf7fff;
+}
+
+
+/**
+ * 検索box
+ *
+ */
+.search-box {
+  position: relative;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.search-box .search-form {
+  border-radius: 20px;
+}
+
+.search-box .search-form:focus {
+  border-color: #ccd0d2;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.search-box .search-icon {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ccc;
+}
+
+.search-box .search-icon:hover {
+  color: #30b490;
 }
 
 
