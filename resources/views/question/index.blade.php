@@ -14,7 +14,7 @@
       <a class="btn" href="{{ route('question.mypage') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
     </div>
     <div class="category-wrap">
-        <div class="btn all @if(empty($conditions)) selected @endif" id="0">all</div>
+        <div class="btn all @if(empty($conditions['tag_category_id'])) selected @endif" id="0">all</div>
         @foreach ($categories as $category)
           <div class="btn {{ $category->name }} {{ $category->name }}-{{ $conditions['tag_category_id'] ?? '' }}" id="{{ $category->id }}">
             {{ $category->name }}
