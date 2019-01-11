@@ -848,7 +848,12 @@ form.user-search {
   color: #636b6f;
 }
 
-.category-wrap .btn:hover {
+.category-wrap .btn:hover,
+.category-wrap .btn.selected,
+.category-wrap .front-1,
+.category-wrap .back-2,
+.category-wrap .infra-3,
+.category-wrap .others-4 {
   background-color: #fff!important;
   border-bottom: #fff!important;
   color: #636b6f;
@@ -879,23 +884,28 @@ form.user-search {
   border: 2px solid #e2c6ff;
 }
 
-.category-wrap .btn.all:hover {
+.category-wrap .btn.all:hover,
+.category-wrap .all.selected {
   border-color: #f0e68c;
 }
 
-.category-wrap .btn.front:hover {
+.category-wrap .btn.front:hover,
+.category-wrap .front-1 {
   border-color: #ffbf7f;
 }
 
-.category-wrap .btn.back:hover {
+.category-wrap .btn.back:hover,
+.category-wrap .back-2 {
   border-color: #afeeee;
 }
 
-.category-wrap .btn.infra:hover {
+.category-wrap .btn.infra:hover,
+.category-wrap .infra-3 {
   border-color: #90ee90;
 }
 
-.category-wrap .btn.others:hover {
+.category-wrap .btn.others:hover,
+.category-wrap .others-4 {
   border-color: #bf7fff;
 }
 

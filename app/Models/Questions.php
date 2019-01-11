@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use cebe\markdown\Markdown;
+use App\Services\SearchingScope;
 
 class Questions extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, SearchingScope;
 
     protected $fillable = [
         'user_id',
@@ -83,13 +84,12 @@ class Questions extends Model
         ]);
     }
 
-    public function getSearchedQuestionTitle($inputs)
+    public function getSearchedQuestion($conditions)
     {
-        return $this->where('title', 'LIKE',"%" . $inputs['search'] . "%")
-                    ->get()
-                    ->when($inputs['tag_category_id'], function($query) use ($inputs) {
-                        return $query->where('tag_category_id', $inputs['tag_category_id']);
-                    });
+        return $this->filterLike('title', $conditions['search_word'])
+                    ->filterEqual('tag_category_id', $conditions['tag_category_id'])
+                    ->orderby('created_at', 'desc')
+                    ->get();
     }
 }
 

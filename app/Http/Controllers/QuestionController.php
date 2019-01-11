@@ -29,14 +29,13 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         $categories = $this->category->all();
-        $inputs = $request->all();
-        if (empty($inputs['search']) && empty($inputs['tag_category_id'])) {
-            $questions = $this->question->all();
+        $conditions = $request->all();
+        if (empty($conditions)) {
+            $questions = $this->question->orderby('created_at', 'desc')->get();
         } else {
-            $questions = $this->question->getSearchedQuestionTitle($inputs);
+            $questions = $this->question->getSearchedQuestion($conditions);
         }
-
-        return view('question.index', compact('questions', 'inputs', 'categories'));
+        return view('question.index', compact('questions', 'categories', 'conditions'));
     }
 
     public function create()

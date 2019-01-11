@@ -18,6 +18,19 @@ trait SearchingScope
     }
 
     /**
+     * 同一テーブルのカラムのwhereLike検索
+     *
+     * @param string $columnName カラム名(検索条件名)
+     *        string $conditionValue 検索条件の値
+     */
+    public function scopeFilterLike($query, $columnName, $conditionValue)
+    {
+        if (!empty($conditionValue)) {
+            $query->where($columnName, 'LIKE', '%'.$conditionValue.'%');
+        }
+    }
+
+    /**
      * 同一テーブルのカラムのwhere比較検索
      * 日時の範囲を検索するときに使用
      *

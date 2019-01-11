@@ -14,9 +14,11 @@
       <a class="btn" href="{{ route('question.mypage') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
     </div>
     <div class="category-wrap">
-        <div class="btn all" id="0">all</div>
+        <div class="btn all @if(empty($conditions)) selected @endif" id="0">all</div>
         @foreach ($categories as $category)
-          <div class="btn {{ $category->name }}" id="{{ $category->id }}">{{ $category->name }}</div>
+          <div class="btn {{ $category->name }} {{ $category->name }}-{{ $conditions['tag_category_id'] ?? '' }}" id="{{ $category->id }}">
+            {{ $category->name }}
+          </div>
         @endforeach
         {!! Form::input('hidden', 'tag_category_id', '0', ['id' => 'category-val']) !!}
     </div>
