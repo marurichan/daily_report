@@ -38,7 +38,7 @@
       <tbody>
         @foreach($questions as $question)
           <tr class="row">
-            <td class="col-xs-1"><img src="{{ Auth::user()->avatar }}" style="width: 30px; border-radius: 50%;"></td>
+            <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td>
             <td class="col-xs-2">{{ $question->category->name }}</td>
             <td class="col-xs-6">{{ $question->title }}</td>
             <td class="col-xs-1"><span class="point_color">0</span></td>

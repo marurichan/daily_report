@@ -2,7 +2,7 @@
 @section('content')
 
 <h2 class="brand-header">
-  <img src="{{ Auth::user()->avatar }}" style="width: 25px; border-radius: 50%;">&nbsp;&nbsp;My page
+  <img src="{{ Auth::user()->avatar }}" class="avatar-img">&nbsp;&nbsp;My page
 </h2>
 <div class="main-wrap">
   <div class="content-wrapper table-responsive">
