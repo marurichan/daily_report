@@ -953,8 +953,12 @@ form.user-search {
  * 質問コメント
  *
  */
+.comment-list {
+  padding: 40px 50px 10px;
+}
+
 .comment-box {
-  padding: 40px;
+  padding: 40px 50px;
 }
 
 .comment-title {
@@ -988,8 +992,34 @@ form.user-search {
   padding: 5px 20px;
 }
 
+.comment-wrap {
+  margin-bottom: 30px;
+}
 
+.comment-wrap .comment-body {
+  position: relative;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  font-size: 12px;
+}
 
+.comment-wrap .comment-title {
+  border: none;
+}
+
+.comment-wrap .comment-body:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #f5f5f5;
+  border-left: 10px solid transparent;
+}
 
 
 

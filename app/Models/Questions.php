@@ -30,6 +30,11 @@ class Questions extends Model
         return $this->belongsTo('App\Models\TagCategory', 'tag_category_id');
     }
 
+    public function comment()
+    {
+        return $this->hasMany('App\Models\Comment', 'question_id');
+    }
+
     public function getMyPageQuestions($user_id)
     {
 

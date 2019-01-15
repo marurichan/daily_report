@@ -58,8 +58,8 @@ class QuestionController extends Controller
 
     public function show($id)
     {
-        $questions = $this->question->find($id);
-        return view('question.show', compact('questions'));
+        $question = $this->question->find($id);
+        return view('question.show', compact('question'));
     }
 
     public function edit($id)
