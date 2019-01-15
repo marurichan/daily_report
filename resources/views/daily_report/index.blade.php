@@ -49,20 +49,20 @@
   <div class="content-wrapper table-responsive">
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th>Date</th>
-          <th>Title</th>
-          <th>Content</th>
-          <th></th>
+        <tr class="row">
+          <th class="col-xs-2">Date</th>
+          <th class="col-xs-3">Title</th>
+          <th class="col-xs-5">Content</th>
+          <th class="col-xs-2"></th>
         </tr>
       </thead>
       <tbody>
         @foreach($reports as $report)
-          <tr>
-            <td>{{ date("Y/m/d", strtotime($report->reporting_time)) }}</td>
-            <td>{{ $report->title }}</td>
-            <td>{{ mb_strimwidth($report->contents, 0, 30, '...', 'UTF-8') }}</td>
-            <td><a class="btn" href="report/{{ $report->id }}"><i class="fa fa-book"></i></a></td>
+          <tr class="row">
+            <td class="col-xs-2">{{ date("Y/m/d", strtotime($report->reporting_time)) }}</td>
+            <td class="col-xs-3">{{ $report->title }}</td>
+            <td class="col-xs-5">{{ mb_strimwidth($report->contents, 0, 50, '...', 'UTF-8') }}</td>
+            <td class="col-xs-2"><a class="btn" href="report/{{ $report->id }}"><i class="fa fa-book"></i></a></td>
           </tr>
         @endforeach
       </tbody>
