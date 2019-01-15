@@ -5,7 +5,7 @@
 
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => ['confirm.updata', $question->id], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['confirm.update', $question->id], 'method' => 'post']) !!}
       <div class="form-group {{ $errors->has('tag_category_id')? 'has-error' : '' }}">
         <select name='tag_category_id' class = "form-control selectpicker form-size-small" id ="pref_id">
           <option value="{{ $question->tag_category_id }}">{{ $question->category->name }}</option>
@@ -23,7 +23,7 @@
         {!! Form::textarea('content', $question->content, ['class' => 'form-control', 'placeholder' => 'Please write down your question here...']) !!}
         <span class="help-block">{{ $errors->first('content') }}</span>
       </div>
-      {!! Form::submit('confirm', ['name' => 'create', 'class' => 'btn btn-success pull-right']) !!}
+      {!! Form::submit('update', ['name' => 'confirm', 'class' => 'btn btn-success pull-right']) !!}
     {!! Form::close() !!}
   </div>
 </div>

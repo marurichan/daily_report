@@ -29,9 +29,9 @@ Route::group(['prefix' => '/'], function() {
   Route::post('/register', 'Auth\RegisterController@register');
   Route::get('/register/{query}', 'Auth\RegisterController@showRegistrationForm');
   Route::resource('question', 'QuestionController');
-  Route::get('question/*/mypage',['as' => 'question.mypage', 'uses' => 'QuestionController@myPage']);
-  Route::post('question/confirm',['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
-  Route::post('question/{id}/confirm',['as' => 'confirm.updata', 'uses' => 'QuestionController@confirm']);
+  Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@myPage']);
+  Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
+  Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {

@@ -16,7 +16,7 @@
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{!! $questions->mark_content !!}</td>
+            <td class='td-text'>{!! nl2br(e($questions->content)) !!}</td>
           </tr>
         </tbody>
       </table>

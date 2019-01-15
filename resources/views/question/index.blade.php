@@ -11,7 +11,7 @@
         <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      <a class="btn" href="{{ route('question.mypage') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
+      <a class="btn" href="{{ route('question.mypage', Auth::id()) }}"><i class="fa fa-user" aria-hidden="true"></i></a>
     </div>
     <div class="category-wrap">
         <div class="btn all @if(empty($conditions['tag_category_id'])) selected @endif" id="0">all</div>
