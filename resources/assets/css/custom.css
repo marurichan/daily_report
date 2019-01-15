@@ -949,4 +949,51 @@ form.user-search {
 }
 
 
+/**
+ * 質問コメント
+ *
+ */
+.comment-box {
+  padding: 40px;
+}
+
+.comment-title {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment-title img,
+.comment-title p {
+  display: inline-block;
+}
+
+.comment-title img {
+  margin-bottom: 5px;
+}
+
+.comment-title p {
+  font-weight: bold;
+  margin: 0 0 0 5px;
+}
+
+.comment-body {
+  margin-bottom: 10px;
+}
+
+.comment-body textarea {
+  height: 100px;
+}
+
+.comment-bottom button {
+  padding: 5px 20px;
+}
+
+
+
+
+
+
+
+
+
 
