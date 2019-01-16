@@ -50,7 +50,7 @@
     </div>
     <div class="comment-bottom">
       <button type="submit" class="btn btn-success">
-        <i class="fa fa-reply" aria-hidden="true"></i>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
       </button>
     </div>
   </div>
