@@ -25,7 +25,6 @@ Route::group(['prefix' => '/'], function() {
     Route::get('home', 'UserController@index')->name('home');
     Route::post('home', 'UserController@update')->name('home.update');
     Route::resource('report', 'DailyReportController');
-    Route::resource('/schedule', 'WorkScheduleController', ['except' => 'show']);
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/register/{query}', 'Auth\RegisterController@showRegistrationForm');
     Route::resource('question', 'QuestionController');
@@ -33,6 +32,7 @@ Route::group(['prefix' => '/'], function() {
     Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
+    Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {
@@ -58,7 +58,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('/register/', 'Auth\AdminRegisterController@showAdminRegistrationForm');
   
     Route::resource('user', UserController::class);
-    Route::resource('schedule', WorkScheduleController::class, ['only' => 'index']);
   
     // access_right
     Route::get('/access_right', ['as' => 'access_right.index', 'uses' => 'AccessRightController@index']);
