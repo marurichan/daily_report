@@ -792,8 +792,8 @@ form.user-search {
   border-bottom: 1px solid #30b490;
 }
 
-.point_color {
-  color: rgba(242, 48, 48, .3);
+.point-color {
+  color: #c0c0c0;
 }
 
 .form-size-small {

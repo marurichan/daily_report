@@ -11,8 +11,8 @@
         <tr class="row">
           <th class="col-xs-2">date</th>
           <th class="col-xs-1">category</th>
-          <th class="col-xs-6">title</th>
-          <th class="col-xs-1">comments</th>
+          <th class="col-xs-5">title</th>
+          <th class="col-xs-2">comments</th>
           <th class="col-xs-1"></th>
           <th class="col-xs-1"></th>
         </tr>
@@ -22,8 +22,8 @@
           <tr class="row">
             <td class="col-xs-2">{{ date('Y-m-d', strtotime($question->created_at)) }}</td>
             <td class="col-xs-1">{{ $question->category->name }}</td>
-            <td class="col-xs-6">{{ $question->title }}</td>
-            <td class="col-xs-1"><span class="point_color">0</span></td>
+            <td class="col-xs-5">{{ $question->title }}</td>
+            <td class="col-xs-2"><span class="point-color">{{ count($question->comment) }}</span></td>
             <td class="col-xs-1">
               <a class="btn btn-success" href="{{ route('question.edit', $question->id) }}">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
