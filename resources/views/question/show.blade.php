@@ -7,6 +7,7 @@
     <div class="panel-heading">
       <img src="{{ $question->user->avatar }}" class="avatar-img">
       <p>{{ $question->user->name }}&nbsp;さんの質問&nbsp;&nbsp;(&nbsp;{{ $question->category->name }}&nbsp;)</p>
+      <p class="question-date">{{ date('Y-m-d H:i', strtotime($question->created_at)) }}</p>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
