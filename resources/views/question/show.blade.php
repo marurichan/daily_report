@@ -5,16 +5,12 @@
 <div class="main-wrap">
   <div class="panel panel-success">
     <div class="panel-heading">
-      <img src="{{ $question->user->avatar }}" class="avatar-img">&nbsp;&nbsp;
-      {{ $question->user->name }}&nbsp;&nbsp;さんの質問
+      <img src="{{ $question->user->avatar }}" class="avatar-img">
+      <p>{{ $question->user->name }}&nbsp;さんの質問&nbsp;&nbsp;(&nbsp;{{ $question->category->name }}&nbsp;)</p>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
         <tbody>
-          <tr>
-            <th class="table-column">Category</th>
-            <td class="td-text">{{ $question->category->name }}</td>
-          </tr>
           <tr>
             <th class="table-column">Title</th>
             <td class="td-text">{{ $question->title }}</td>
@@ -33,7 +29,9 @@
       @foreach ($question->comment as $comment)
         <div class="comment-wrap">
           <div class="comment-title">
-            <img src="{{ $comment->user->avatar }}" class="avatar-img"><p>{{ $comment->user->name }}</p>
+            <img src="{{ $comment->user->avatar }}" class="avatar-img">
+            <p>{{ $comment->user->name }}</p>
+            <p class="comment-date">{{ date('Y-m-d H:i', strtotime($comment->created_at)) }}</p>
           </div>
           <div class="comment-body">
             {!! nl2br(e($comment->comment)) !!}
@@ -43,9 +41,6 @@
     </div>
   @endif
 
-
-
-
   <div class="comment-box">
     <div class="comment-title">
       <img src="{{ Auth::user()->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
@@ -54,7 +49,9 @@
       {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Add your comment...']) !!}
     </div>
     <div class="comment-bottom">
-      <button type="submit" class="btn btn-success pull-right"><i class="fa fa-reply" aria-hidden="true"></i></i></button>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-reply" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 

@@ -914,6 +914,22 @@ form.user-search {
   border-color: #bf7fff;
 }
 
+.panel-heading {
+  padding: 10px 15px 5px!important;
+}
+
+.panel-heading img,
+.panel-heading p {
+  display: inline-block;
+}
+
+.panel-heading img {
+  margin-bottom: 5px;
+}
+
+.panel-heading p {
+  margin: 0 0 0 5px;
+}
 
 /**
  * 検索box
@@ -954,11 +970,11 @@ form.user-search {
  *
  */
 .comment-list {
-  padding: 40px 50px 10px;
+  padding: 30px 50px 10px;
 }
 
 .comment-box {
-  padding: 40px 50px;
+  padding: 30px 50px;
 }
 
 .comment-title {
@@ -977,7 +993,12 @@ form.user-search {
 
 .comment-title p {
   font-weight: bold;
-  margin: 0 0 0 5px;
+  margin: 0 0 0 8px;
+}
+
+.comment-title .comment-date {
+  font-size: 12px;
+  font-weight: inherit;
 }
 
 .comment-body {
@@ -986,6 +1007,10 @@ form.user-search {
 
 .comment-body textarea {
   height: 100px;
+}
+
+.comment-bottom {
+  text-align: right;
 }
 
 .comment-bottom button {
