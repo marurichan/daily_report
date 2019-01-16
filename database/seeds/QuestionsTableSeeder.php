@@ -9,7 +9,7 @@ class QuestionsTableSeeder extends Seeder
     DB::table('questions')->truncate();
     DB::table('questions')->insert([
         [
-            'user_id'         => 4,
+            'user_id'         => 2,
             'tag_category_id' => 2,
             'title'           => 'SQLのJOINについて',
             'content'         => '勤怠管理ページを作っており
@@ -24,7 +24,7 @@ name=NoでスタッフNoを、name=officeで勤怠を、date関数で出した�
             'created_at'      => '2017-12-3',
         ],
         [
-            'user_id'         => 4,
+            'user_id'         => 2,
             'tag_category_id' => 1,
             'title'           => 'divの中央寄せのやり方がわかりません',
             'content'         => 'ツイートのボタンを左寄せにしたいと考えています。
@@ -42,7 +42,7 @@ name=NoでスタッフNoを、name=officeで勤怠を、date関数で出した�
             'created_at'      => '2018-10-9',
         ],
         [
-            'user_id'         => 4,
+            'user_id'         => 2,
             'tag_category_id' => 3,
             'title'           => 'AWSでEC2のインスタンスがうまくたてられない',
             'content'         => '所在が不明なインスタンスがあります。
@@ -57,7 +57,7 @@ cloudwatchでアラームを作っていたのですが、
             'created_at'      => '2017-08-20',
         ],
         [
-            'user_id'         => 4,
+            'user_id'         => 2,
             'tag_category_id' => 2,
             'title'           => 'Unknown valiableと表示されてしまいます',
             'content'         => '初期表示では、エラーが出ませんが、ajaxで送信した後に下記のようなエラーが出るので解消したいです。
