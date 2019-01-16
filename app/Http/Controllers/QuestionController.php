@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TagCategory;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Questions;
+use App\Models\TagCategory;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
-use App\Models\Questions;
-use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class QuestionController extends Controller
 {
@@ -98,7 +99,7 @@ class QuestionController extends Controller
         return view('question.confirm', compact('inputs', 'category', 'questionId'));
     }
 
-    public function storeComment(Request $request)
+    public function storeComment(CommentRequest $request)
     {
         $inputs = $request->all();
         $this->comment->create($inputs);

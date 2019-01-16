@@ -1,5 +1,5 @@
-@extends('partials.outline')
-@section('content')
+@extends ('partials.outline')
+@section ('content')
 
 <h2 class="brand-header">投稿内容確認</h2>
 <div class="main-wrap">

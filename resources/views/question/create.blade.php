@@ -1,8 +1,7 @@
-@extends('partials.outline')
+@extends ('partials.outline')
+@section ('content')
 
-@section('content')
 <h2 class="brand-header">質問投稿</h2>
-
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'question.confirm', 'method' => 'post']) !!}

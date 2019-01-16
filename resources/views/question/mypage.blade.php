@@ -1,5 +1,5 @@
-@extends('partials.outline')
-@section('content')
+@extends ('partials.outline')
+@section ('content')
 
 <h2 class="brand-header">
   <img src="{{ Auth::user()->avatar }}" class="avatar-img">&nbsp;&nbsp;My page
@@ -40,11 +40,6 @@
         @endforeach
       </tbody>
     </table>
-    <div class="btn-bottom-wrapper left-side">
-      <a href="{{ route('question.index') }}" class="btn btn-success">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-      </a>
-    </div>
   </div>
 </div>
 

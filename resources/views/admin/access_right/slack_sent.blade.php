@@ -3,7 +3,6 @@
 
 <h3>メッセージが送信されました。</h3>
 <p>※５秒後にホームに自動で移動します。</p>
-<!-- <a href="{{ route('admin.') }}">ホームに戻る</a> -->
 
 <script>
   setTimeout(function(){

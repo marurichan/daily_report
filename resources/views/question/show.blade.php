@@ -1,5 +1,5 @@
-@extends('partials.outline')
-@section('content')
+@extends ('partials.outline')
+@section ('content')
 
 <h1 class="brand-header">質問詳細</h1>
 <div class="main-wrap">
@@ -24,7 +24,6 @@
       </table>
     </div>
   </div>
-
   @if (!empty($question->comment))
     <div class="comment-list">
       @foreach ($question->comment as $comment)
@@ -41,7 +40,6 @@
       @endforeach
     </div>
   @endif
-
   <div class="comment-box">
     {!! Form::open(['route' => ['question.comment', $question->id], 'method' => 'post']) !!}
       {!! Form::input('hidden', 'user_id', Auth::id()) !!}
@@ -49,8 +47,9 @@
       <div class="comment-title">
         <img src="{{ Auth::user()->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>
-      <div class="comment-body">
+      <div class="comment-body {{ $errors->has('comment') ? 'has-error' : '' }}">
         {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Add your comment...']) !!}
+        <span class="help-block">{{ $errors->first('comment') }}</span>
       </div>
       <div class="comment-bottom">
         <button type="submit" class="btn btn-success">
@@ -59,7 +58,6 @@
       </div>
     {!! Form::close() !!}
   </div>
-
 </div>
 
 @endsection
