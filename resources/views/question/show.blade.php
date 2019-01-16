@@ -43,17 +43,21 @@
   @endif
 
   <div class="comment-box">
-    <div class="comment-title">
-      <img src="{{ Auth::user()->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
-    </div>
-    <div class="comment-body">
-      {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Add your comment...']) !!}
-    </div>
-    <div class="comment-bottom">
-      <button type="submit" class="btn btn-success">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </button>
-    </div>
+    {!! Form::open(['route' => ['question.comment', $question->id], 'method' => 'post']) !!}
+      {!! Form::input('hidden', 'user_id', Auth::id()) !!}
+      {!! Form::input('hidden', 'question_id', $question->id) !!}
+      <div class="comment-title">
+        <img src="{{ Auth::user()->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
+      </div>
+      <div class="comment-body">
+        {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Add your comment...']) !!}
+      </div>
+      <div class="comment-bottom">
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+      </div>
+    {!! Form::close() !!}
   </div>
 
 </div>

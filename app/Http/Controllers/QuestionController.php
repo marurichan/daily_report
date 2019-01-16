@@ -7,17 +7,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
 use App\Models\Questions;
+use App\Models\Comment;
 
 class QuestionController extends Controller
 {
     protected $question;
     protected $category;
+    protected $comment;
 
-    public function __construct(Questions $question, TagCategory $category)
+    public function __construct(Questions $question, TagCategory $category, Comment $comment)
     {
         $this->middleware('auth');
         $this->question = $question;
         $this->category = $category;
+        $this->comment = $comment;
     }
 
     /**
@@ -93,6 +96,13 @@ class QuestionController extends Controller
         $inputs = $request->all();
         $category = $this->category->find($inputs['tag_category_id'])->name;
         return view('question.confirm', compact('inputs', 'category', 'questionId'));
+    }
+
+    public function storeComment(Request $request)
+    {
+        $inputs = $request->all();
+        $this->comment->create($inputs);
+        return redirect()->route('question.index');
     }
 
 }
