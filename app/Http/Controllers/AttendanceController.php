@@ -17,7 +17,7 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        return 'index';
+        return view('attendance.index');
     }
 
 }
