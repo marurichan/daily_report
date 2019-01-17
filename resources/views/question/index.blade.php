@@ -7,7 +7,7 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        {!! Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
+        {!! Form::input('text', 'search_word', '', ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -16,9 +16,9 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all @if(empty($conditions['tag_category_id'])) selected @endif" id="0">all</div>
+      <div class="btn all @if(empty($inputs['tag_category_id'])) selected @endif" id="0">all</div>
         @foreach ($categories as $category)
-          <div class="btn {{ $category->name }} {{ $category->name }}-{{ $conditions['tag_category_id'] ?? '' }}" id="{{ $category->id }}">
+          <div class="btn {{ $category->name }} {{ $category->name }}-{{ $inputs['tag_category_id'] ?? '' }}" id="{{ $category->id }}">
             {{ $category->name }}
           </div>
         @endforeach
@@ -54,11 +54,12 @@
       </tbody>
     </table>
     <div aria-label="Page navigation example" class="text-center">
-
-        @if(empty($conditions['tag_category_id']) && empty($conditions['search_word']))
+        @if(empty($inputs['tag_category_id']) && empty($inputs['search_word']))
           {{ $questions->links() }}
+        @elseif (array_key_exists('search_word', $questions))
+        {{ $questions->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
         @else
-        {{ $questions->appends(['search_word' => $conditions['search_word']])->appends(['tag_category_id' => $conditions['tag_category_id']])->links() }}
+          {{ $questions->appends(['search_word' => $inputs['search_word']])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
         @endif
     </div>
   </div>

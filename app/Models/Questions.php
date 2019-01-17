@@ -51,14 +51,9 @@ class Questions extends Model
 
     public function getSearchingQuestion($conditions)
     {
-        return $this->searchWord($conditions['search_word'])
+        return $this->filterLike('title', $conditions['search_word'])
                     ->filterEqual('tag_category_id', $conditions['tag_category_id'])
                     ->orderby('created_at', 'desc');
-    }
-
-    public function scopeSearchWord($query, $word)
-    {
-        return $query->where('title', 'LIKE', '%' . $word . '%');
     }
 }
 

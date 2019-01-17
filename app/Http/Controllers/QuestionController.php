@@ -31,18 +31,37 @@ class QuestionController extends Controller
       *
       * @return \Illuminate\Http\Response
       */
+
     public function index(Request $request)
     {
         $categories = $this->category->all();
-        $conditions = $request->all();
-        if (!empty($conditions['tag_category_id']) || !empty($conditions['search_word'])) {
-            $questions = $this->question->getSearchingQuestion($conditions)->paginate(MAX_PAGE_COUNT);
-            // return view('question.index', compact('questions', 'categories', 'conditions'));
-        }
+        $inputs = $request->all();
 
-        $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
-        return view('question.index', compact('questions', 'categories', 'conditions'));
+        if (array_key_exists('search_word', $inputs)) {
+            $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
+        } else {
+            $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
+        }
+        return view('question.index', compact('questions', 'categories', 'inputs'));
     }
+
+    // public function index(Request $request)
+    // {
+    //     $categories = $this->category->all();
+    //     $inputs = $request->all();
+    //     $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
+
+    //     if (!isset($inputs['search_word'])) {
+    //         $inputs['search_word'] = '';
+    //     }
+
+    //     if (!empty($inputs['tag_category_id']) || !empty($inputs['search_word'])) {
+    //         $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
+    //     }
+
+    //     return view('question.index', compact('questions', 'categories', 'inputs'));
+    // }
+
 
     public function create()
     {
