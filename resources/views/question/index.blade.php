@@ -49,9 +49,18 @@
               </a>
             </td>
           </tr>
+
         @endforeach
       </tbody>
     </table>
+    <div aria-label="Page navigation example" class="text-center">
+
+        @if(empty($conditions['tag_category_id']) && empty($conditions['search_word']))
+          {{ $questions->links() }}
+        @else
+        {{ $questions->appends(['search_word' => $conditions['search_word']])->appends(['tag_category_id' => $conditions['tag_category_id']])->links() }}
+        @endif
+    </div>
   </div>
 </div>
 

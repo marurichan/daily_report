@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
 use App\Http\Requests\CommentRequest;
 
+const MAX_PAGE_COUNT = 3;
+
 class QuestionController extends Controller
 {
     protected $question;
@@ -33,11 +35,12 @@ class QuestionController extends Controller
     {
         $categories = $this->category->all();
         $conditions = $request->all();
-        if (empty($conditions)) {
-            $questions = $this->question->orderby('created_at', 'desc')->get();
-        } else {
-            $questions = $this->question->getSearchingQuestion($conditions);
+        if (!empty($conditions['tag_category_id']) || !empty($conditions['search_word'])) {
+            $questions = $this->question->getSearchingQuestion($conditions)->paginate(MAX_PAGE_COUNT);
+            // return view('question.index', compact('questions', 'categories', 'conditions'));
         }
+
+        $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         return view('question.index', compact('questions', 'categories', 'conditions'));
     }
 
