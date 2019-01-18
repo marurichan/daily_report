@@ -7,7 +7,7 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        {!! Form::input('text', 'search_word', '', ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
+        {!! Form::input('text', 'search_word', 'NULL', ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -49,7 +49,6 @@
               </a>
             </td>
           </tr>
-
         @endforeach
       </tbody>
     </table>

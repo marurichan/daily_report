@@ -31,10 +31,8 @@ class QuestionController extends Controller
       *
       * @return \Illuminate\Http\Response
       */
-
-
-      public function index(Request $request)
-      {
+    public function index(Request $request)
+    {
         $categories = $this->category->all();
         $inputs = $request->all();
 
