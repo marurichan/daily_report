@@ -32,11 +32,16 @@ class QuestionController extends Controller
       * @return \Illuminate\Http\Response
       */
 
-    public function index(Request $request)
-    {
+
+      public function index(Request $request)
+      {
         $categories = $this->category->all();
         $inputs = $request->all();
 
+        /*
+        * 以下　ページング処理
+        * FIXME:検索したのちに他のページに遷移した場合のみ、 undefind search_word となりエラー発生
+        */
         if (array_key_exists('search_word', $inputs)) {
             $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
         } else {
@@ -44,24 +49,6 @@ class QuestionController extends Controller
         }
         return view('question.index', compact('questions', 'categories', 'inputs'));
     }
-
-    // public function index(Request $request)
-    // {
-    //     $categories = $this->category->all();
-    //     $inputs = $request->all();
-    //     $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
-
-    //     if (!isset($inputs['search_word'])) {
-    //         $inputs['search_word'] = '';
-    //     }
-
-    //     if (!empty($inputs['tag_category_id']) || !empty($inputs['search_word'])) {
-    //         $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
-    //     }
-
-    //     return view('question.index', compact('questions', 'categories', 'inputs'));
-    // }
-
 
     public function create()
     {
