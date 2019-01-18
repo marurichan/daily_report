@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
 use App\Http\Requests\CommentRequest;
 
-const MAX_PAGE_COUNT = 3;
+const MAX_PAGE_COUNT = 30;
 
 class QuestionController extends Controller
 {
