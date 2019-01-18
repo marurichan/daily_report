@@ -26,7 +26,7 @@
   <div class="attention-box"><p>{{ config('app.name') }} はSlackと連携したシステムです。Slackのアカウント情報をアプリケーション内で使用します。</p></div>
     <div class="login-box">
       <button class="login-btn" type="button" onclick="location.href='slack/login'">
-        <img src="/image/signin.jpg" alt="Sign in with Slack" />
+        <img src="/image/sign_in_with_slack.png" alt="Sign in with Slack" />
       </button>
     </div>
   </div>

@@ -15,6 +15,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('css/navbar-fixed-left.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/clock.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -92,6 +93,7 @@
   @yield('content')
 
   <!-- Scripts -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/custom.js') }}"></script>
 </body>
