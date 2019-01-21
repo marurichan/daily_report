@@ -53,8 +53,7 @@ class Questions extends Model
     {
         return $this->filterLike('title', $conditions['search_word'])
                     ->filterEqual('tag_category_id', $conditions['tag_category_id'])
-                    ->orderby('created_at', 'desc')
-                    ->get();
+                    ->orderby('created_at', 'desc');
     }
 }
 

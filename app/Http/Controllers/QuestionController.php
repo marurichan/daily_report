@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
 use App\Http\Requests\CommentRequest;
 
+const MAX_PAGE_COUNT = 30;
+
 class QuestionController extends Controller
 {
     protected $question;
@@ -32,13 +34,18 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         $categories = $this->category->all();
-        $conditions = $request->all();
-        if (empty($conditions)) {
-            $questions = $this->question->orderby('created_at', 'desc')->get();
+        $inputs = $request->all();
+
+        /*
+        * 以下　ページング処理
+        * FIXME:検索したのちに他のページに遷移した場合のみ、 undefind search_word となりエラー発生
+        */
+        if (array_key_exists('search_word', $inputs)) {
+            $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
         } else {
-            $questions = $this->question->getSearchingQuestion($conditions);
+            $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         }
-        return view('question.index', compact('questions', 'categories', 'conditions'));
+        return view('question.index', compact('questions', 'categories', 'inputs'));
     }
 
     public function create()
