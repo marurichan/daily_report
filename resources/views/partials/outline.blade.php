@@ -4,19 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'greenhorn_works') }}</title>
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('css/navbar-fixed-left.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/clock.css') }}" rel="stylesheet">
-
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -71,7 +67,7 @@
     </div>
   </nav>
 
-  <nav class="navbar navbar-fixed-left" style="margin-top: 70px; background-color: #30B490;">
+  <nav class="navbar navbar-fixed-left">
     <div class="container">
       <div class="navbar-header navbar-left-header">MENU</div>
       <div class="navbar-collapse collapse">

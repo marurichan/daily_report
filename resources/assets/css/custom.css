@@ -581,6 +581,11 @@ body {
   text-align: left !important;
 }
 
+.navbar-fixed-left {
+  margin-top: 70px;
+  background-color: #30B490;
+}
+
 .navbar-brand {
     font-size: 25px;
     line-height: 30px;
@@ -1050,7 +1055,17 @@ form.user-search {
   border-left: 10px solid transparent;
 }
 
+/**
+ * admin共通部
+ *
+ */
+.navbar.admin {
+  background-color: #161a25;
+}
 
+.navbar.admin .nav-left-list li a:hover {
+  background-color: rgba(255,255,255,0.08);
+}
 
 
 
