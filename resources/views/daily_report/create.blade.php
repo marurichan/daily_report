@@ -8,9 +8,9 @@
   <div class="container">
     {!! Form::open(['route' => 'report.store']) !!}
       {!! Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) !!}
-      <div class="form-group form-size-small @if(!empty($errors->first('date'))) has-error @endif">
+      <div class="form-group form-size-small @if(!empty($errors->first('reporting_time'))) has-error @endif">
         {!! Form::input('date', 'reporting_time', date('Y-m-d'), ['class' => 'form-control']) !!}
-        <span class="help-block">{{$errors->first('date')}}</span>
+        <span class="help-block">{{$errors->first('reporting_time')}}</span>
       </div>
       <div class="form-group @if(!empty($errors->first('title'))) has-error @endif">
         {!! Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
