@@ -22,17 +22,25 @@ Route::group(['prefix' => '/'], function() {
     });
     Route::get('slack/login', 'Auth\AuthenticateController@slackAuth');
     Route::get('callback', 'Auth\AuthenticateController@userinfo');
+
     Route::get('home', 'UserController@index')->name('home');
     Route::post('home', 'UserController@update')->name('home.update');
+
     Route::resource('report', 'DailyReportController');
+
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/register/{query}', 'Auth\RegisterController@showRegistrationForm');
+
     Route::resource('question', 'QuestionController');
     Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@myPage']);
     Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
+
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
+    Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@showAbsenceForm']);
+    Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@showModifyForm']);
+    Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {

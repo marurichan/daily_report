@@ -1,14 +1,14 @@
 @extends ('partials.outline')
 @section ('content')
 
-<h2 class="brand-header">勤怠</h2>
+<h2 class="brand-header">勤怠登録</h2>
 
 <div class="main-wrap">
 
   <div id="clock" class="light">
     <div class="display">
       <div class="weekdays"></div>
-      <div class="alarm"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></div>
+      <div class="today"></i></div>
       <div class="digits"></div>
     </div>
   </div>

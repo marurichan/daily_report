@@ -20,5 +20,20 @@ class AttendanceController extends Controller
         return view('attendance.index');
     }
 
+    public function showAbsenceForm()
+    {
+        return view('attendance.absence');
+    }
+
+    public function showModifyForm()
+    {
+        return view('attendance.modify');
+    }
+
+    public function showMypage()
+    {
+        return view('attendance.mypage');
+    }
+
 }
 
