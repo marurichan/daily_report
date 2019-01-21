@@ -36,14 +36,9 @@ class QuestionController extends Controller
         $categories = $this->category->all();
         $inputs = $request->all();
 
-        /*
-        * 以下　ページング処理
-        * FIXME:検索したのちに他のページに遷移した場合のみ、 undefind search_word となりエラー発生
-        */
+        $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         if (array_key_exists('search_word', $inputs)) {
             $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
-        } else {
-            $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         }
         return view('question.index', compact('questions', 'categories', 'inputs'));
     }
