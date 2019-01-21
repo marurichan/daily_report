@@ -53,13 +53,13 @@
       </tbody>
     </table>
     <div aria-label="Page navigation example" class="text-center">
-        @if(empty($inputs['tag_category_id']) && empty($inputs['search_word']))
-          {{ $questions->links() }}
-        @elseif (array_key_exists('search_word', $questions))
+      @if(empty($inputs['tag_category_id']) && empty($inputs['search_word']))
+        {{ $questions->links() }}
+      @elseif (array_key_exists('search_word', $questions))
         {{ $questions->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
-        @else
-          {{ $questions->appends(['search_word' => $inputs['search_word']])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
-        @endif
+      @else
+        {{ $questions->appends(['search_word' => $inputs['search_word']])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
+      @endif
     </div>
   </div>
 </div>
