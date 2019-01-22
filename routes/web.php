@@ -41,6 +41,7 @@ Route::group(['prefix' => '/'], function() {
     Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@showAbsenceForm']);
     Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@showModifyForm']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
+    Route::post('attendance/absence/create', ['as' => 'attendance.createAbsence', 'uses' => 'AttendanceController@createAbsence']);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {

@@ -35,5 +35,21 @@ class AttendanceController extends Controller
         return view('attendance.mypage');
     }
 
+    public function createAbsence(Request $request)
+    {
+        $inputs = $request->all();
+        $absenceRecord = $this->attendance->where('date', $inputs['date'])->where('user_id', $inputs['user_id']);
+
+        $absent_flg = $absenceRecord->exists();
+
+        if ($absent_flg) {
+            $absenceRecord->first()->fill($inputs)->save();
+            return view('attendance.index');
+        }
+
+        $this->attendance->fill($inputs)->save();
+        return view('attendance.index');
+    }
+
 }
 
