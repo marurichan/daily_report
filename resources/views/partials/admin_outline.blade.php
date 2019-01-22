@@ -34,7 +34,7 @@
         </button>
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ route('home') }}">
-            {{ config('app.name') }} - admin -
+            {{ config('app.name') }} -Admin-
         </a>
       </div>
 
