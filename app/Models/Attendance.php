@@ -22,6 +22,5 @@ class Attendance extends Model
         'absent_reason',
         'date'
     ];
-
 }
 
