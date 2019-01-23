@@ -7,7 +7,7 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        @if(isset($inputs['search_word']))
+        @if (isset($inputs['search_word']))
           {!! Form::input('text', 'search_word', $inputs['search_word'], ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         @else
           {!! Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
