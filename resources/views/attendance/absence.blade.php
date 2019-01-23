@@ -8,8 +8,9 @@
       {!! Form::input('hidden', 'date', date("Y/m/d")) !!}
       {!! Form::input('hidden', 'absent_flg', 1) !!}
       {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
-      <div class="form-group {{ $errors->has('content')? 'has-error' : '' }}">
+      <div class="form-group {{ $errors->has('absent_reason')? 'has-error' : '' }}">
         {!! Form::textarea('absent_reason', null, ['class' => 'form-control', 'placeholder' => 'Please write down the reason for your absence...']) !!}
+        <span class="help-block">{{ $errors->first('absent_reason') }}</span>
       </div>
       {!! Form::submit('register', ['name' => 'confirm', 'class' => 'btn btn-success pull-right']) !!}
     {!! Form::close() !!}
