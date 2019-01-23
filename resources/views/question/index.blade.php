@@ -60,7 +60,7 @@
       @if (empty($inputs['tag_category_id']) && empty($inputs['search_word']))
         {{ $questions->links() }}
       @else
-        {{ $questions->appends(['search_word' => $inputs['search_word'] ?: "" ])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
+        {{ $questions->appends(['search_word' => $inputs['search_word'] ?? "" ])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
       @endif
     </div>
   </div>
