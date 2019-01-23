@@ -20,7 +20,7 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all @if(empty($inputs['tag_category_id'])) selected @endif" id="0">all</div>
+      <div class="btn all @if (empty($inputs['tag_category_id'])) selected @endif" id="0">all</div>
         @foreach ($categories as $category)
           <div class="btn {{ $category->name }} {{ $category->name }}-{{ $inputs['tag_category_id'] ?? '' }}" id="{{ $category->id }}">
             {{ $category->name }}
@@ -60,7 +60,7 @@
       @if (empty($inputs['tag_category_id']) && empty($inputs['search_word']))
         {{ $questions->links() }}
       @else
-        {{ $questions->appends(['search_word' => $inputs['search_word'] ?? "" ])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
+        {{ $questions->appends(['search_word' => $inputs['search_word'] ?? '' ])->appends(['tag_category_id' => $inputs['tag_category_id']])->links() }}
       @endif
     </div>
   </div>
