@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use App\Http\Requests\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -33,6 +34,22 @@ class AttendanceController extends Controller
     public function showMypage()
     {
         return view('attendance.mypage');
+    }
+
+    public function createAbsence(AttendanceRequest $request)
+    {
+        $inputs = $request->all();
+        $absenceRecord = $this->attendance->where('date', $inputs['date'])->where('user_id', $inputs['user_id']);
+
+        $absent_flg = $absenceRecord->exists();
+
+        if ($absent_flg) {
+            $absenceRecord->first()->fill($inputs)->save();
+            return view('attendance.index');
+        }
+
+        $this->attendance->create($inputs);
+        return view('attendance.index');
     }
 
 }

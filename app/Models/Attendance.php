@@ -8,6 +8,11 @@ class Attendance extends Model
 {
     protected $table = 'attendance';
 
+    /**
+     * timestampを無効化
+     */
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
         'start_time',

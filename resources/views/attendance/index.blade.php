@@ -15,21 +15,18 @@
   <div class="button-holder">
     <a class="button start-btn" href=#openModal>出社時間登録</a>
   </div>
-
   <ul class="button-wrap">
     <li>
-      <a class="at-btn absence">欠席登録</a>
+      <a class="at-btn absence" href="{{ route('attendance.absence') }}">欠席登録</a>
     </li>
     <li>
-      <a class="at-btn modify">修正申請</a>
+      <a class="at-btn modify" href="{{ route('attendance.modify') }}">修正申請</a>
     </li>
     <li>
-      <a class="at-btn my-list">マイページ</a>
+      <a class="at-btn my-list" href="{{ route('attendance.mypage') }}">マイページ</a>
     </li>
   </ul>
-
 </div>
-
 
 <div id="openModal" class="modalDialog">
   <div>
