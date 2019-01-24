@@ -4,7 +4,7 @@
 <h2 class="brand-header">修正申請</h2>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'attendance.storeModify']) !!}
+    {!! Form::open(['route' => 'attendance.modify.store']) !!}
       {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
       <div class="form-group form-size-small {{ $errors->has('date') ? 'has-error' : '' }}">
         {!! Form::input('date', 'date', date('Y-m-d'), ['class' => 'form-control']) !!}

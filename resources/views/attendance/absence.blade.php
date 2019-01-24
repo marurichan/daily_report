@@ -4,7 +4,7 @@
 <h2 class="brand-header">欠席登録</h2>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'attendance.createAbsence']) !!}
+    {!! Form::open(['route' => 'attendance.absence.store']) !!}
       {!! Form::input('hidden', 'date', date('Y-m-d')) !!}
       {!! Form::input('hidden', 'absent_flg', 1) !!}
       {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
