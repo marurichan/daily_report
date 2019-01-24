@@ -24,14 +24,18 @@ class AttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'absent_reason' => 'required'
+            'request_content' => 'sometimes|required',
+            'absent_reason'   => 'sometimes|required',
+            'date'            => 'sometimes|required',
         ];
     }
 
     public function messages()
     {
         return [
-            'absent_reason.required' => '入力必須の項目です'
+            'request_content.required' => '入力必須の項目です',
+            'absent_reason.required'   => '入力必須の項目です',
+            'date.required'            => '入力必須の項目です',
         ];
     }
 }

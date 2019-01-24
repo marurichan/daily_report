@@ -20,7 +20,7 @@ class Attendance extends Model
         'request_content',
         'absent_flg',
         'absent_reason',
-        'date'
+        'date',
     ];
     
 }

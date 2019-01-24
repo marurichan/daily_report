@@ -52,5 +52,12 @@ class AttendanceController extends Controller
         return view('attendance.index');
     }
 
+    public function storeModifyRequest(AttendanceRequest $request)
+    {
+        $inputs = $request->all();
+        $this->attendance->where('date', $inputs['date'])->where('user_id', $inputs['user_id'])->first()->fill($inputs)->save();
+        return view('attendance.index');
+    }
+
 }
 
