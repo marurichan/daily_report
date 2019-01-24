@@ -39,9 +39,9 @@ Route::group(['prefix' => '/'], function() {
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@showAbsenceForm']);
+    Route::post('attendance/absence', ['as' => 'attendance.createAbsence', 'uses' => 'AttendanceController@createAbsence']);
     Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@showModifyForm']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
-    Route::post('attendance/absence/create', ['as' => 'attendance.createAbsence', 'uses' => 'AttendanceController@createAbsence']);
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {
