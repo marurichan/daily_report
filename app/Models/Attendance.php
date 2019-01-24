@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Services\SearchingScope;
 
 class Attendance extends Model
 {
+    use SearchingScope;
+
     protected $table = 'attendance';
 
-    /**
-     * timestampを無効化
-     */
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,6 +22,22 @@ class Attendance extends Model
         'absent_reason',
         'date',
     ];
-    
+
+    public function registerAbsence($inputs)
+    {
+        $this->updateOrCreate(
+            ['user_id' => $inputs['user_id'], 'date' => $inputs['date']], $inputs
+        );
+    }
+
+    public function registerModifyRequest($inputs)
+    {
+        $this->filterEqual('user_id', $inputs['user_id'])
+             ->filterEqual('date', $inputs['date'])
+             ->firstOrFail()
+             ->fill($inputs)
+             ->save();
+    }
+
 }
 

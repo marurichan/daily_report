@@ -36,27 +36,18 @@ class AttendanceController extends Controller
         return view('attendance.mypage');
     }
 
-    public function createAbsence(AttendanceRequest $request)
+    public function registerAbsence(AttendanceRequest $request)
     {
         $inputs = $request->all();
-        $absenceRecord = $this->attendance->where('date', $inputs['date'])->where('user_id', $inputs['user_id']);
-
-        $absent_flg = $absenceRecord->exists();
-
-        if ($absent_flg) {
-            $absenceRecord->first()->fill($inputs)->save();
-            return view('attendance.index');
-        }
-
-        $this->attendance->create($inputs);
-        return view('attendance.index');
+        $this->attendance->registerAbsence($inputs);
+        return redirect()->route('attendance.index');
     }
 
     public function storeModifyRequest(AttendanceRequest $request)
     {
         $inputs = $request->all();
-        $this->attendance->where('date', $inputs['date'])->where('user_id', $inputs['user_id'])->first()->fill($inputs)->save();
-        return view('attendance.index');
+        $this->attendance->registerModifyRequest($inputs);
+        return redirect()->route('attendance.index');
     }
 
 }

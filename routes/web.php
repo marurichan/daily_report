@@ -39,7 +39,7 @@ Route::group(['prefix' => '/'], function() {
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@showAbsenceForm']);
-    Route::post('attendance/absence', ['as' => 'attendance.createAbsence', 'uses' => 'AttendanceController@createAbsence']);
+    Route::post('attendance/absence', ['as' => 'attendance.createAbsence', 'uses' => 'AttendanceController@registerAbsence']);
     Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@showModifyForm']);
     Route::post('attendance/modify', ['as' => 'attendance.storeModify', 'uses' => 'AttendanceController@storeModifyRequest']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
