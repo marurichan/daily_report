@@ -8,6 +8,16 @@ $(function(){
   });
 
 
+  // 出社退社時間登録用
+  $('#register-attendance').on('click', function(){
+    var date_time = moment().format("YYYY-MM-DD HH:mm:ss");
+    var time = moment().format("HH:mm");
+    $('.register-text-wrap').html('<p>' + time + ' で出社時間を登録しますか？');
+    $('#date-time-target').val(date_time);
+  });
+
+
+
   // 勤怠登録画面の時計表示
 
   var clock = $('#clock'),
@@ -106,8 +116,6 @@ $(function(){
       setTimeout(update_time, 1000);
 
   })();
-
-
 
 
 });

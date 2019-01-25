@@ -315,6 +315,12 @@ a.button.end-btn {
   background-color: #ce9edd;
 }
 
+a.button.absent-label {
+  pointer-events: none;
+  cursor: default;
+  background-color: #ccc;
+}
+
 a.button:hover,
 .button-wrap a {
   opacity:0.9;
@@ -395,14 +401,14 @@ a.button:hover,
 
 
 .register-text-wrap {
-  padding-top: 50px;
+  padding-top: 60px;
   font-weight: bold;
   text-align: center;
   position: relative;
 }
 
 .register-text-wrap p {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .register-text-wrap:before {
@@ -411,7 +417,7 @@ a.button:hover,
   position: absolute;
   line-height: normal;
   font-size: 20px;
-  top: 25%;
+  top: 30%;
   right: 0;
   left: 0;
 }
@@ -420,7 +426,8 @@ a.button:hover,
   font-size: 0;
 }
 
-.register-btn-wrap a {
+.register-btn-wrap a,
+.register-btn-wrap input.yes-btn {
   display: inline-block;
   width: 50%;
   font-size: 15px;
@@ -429,8 +436,14 @@ a.button:hover,
   padding: 10px 0;
 }
 
-.register-btn-wrap a:hover {
+.register-btn-wrap a:hover,
+.register-btn-wrap input:hover {
   opacity: .9;
+}
+
+.register-btn-wrap a:active,
+.register-btn-wrap input:active {
+  opacity: .8;
 }
 
 .register-btn-wrap a.cancel-btn {
@@ -439,10 +452,11 @@ a.button:hover,
   color: inherit;
 }
 
-.register-btn-wrap a.yes-btn {
+.register-btn-wrap input.yes-btn {
   border-radius: 0 0 10px 0;
   background-color: #65d5b5;
   color: #fff;
+  border: none;
 }
 
 

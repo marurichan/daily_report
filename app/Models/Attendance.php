@@ -23,6 +23,23 @@ class Attendance extends Model
         'date',
     ];
 
+    public function getTodaysRecord($user_id)
+    {
+        return $this->where('user_id', $user_id)
+                    ->where('date', date('Y-m-d'))
+                    ->first();
+    }
+
+    public function registerStartTime($inputs)
+    {
+        $hasntRecord = $this->where('user_id', $inputs['user_id'])
+                            ->where('date', $inputs['date'])
+                            ->doesntExist();
+        if ($hasntRecord) {
+            $this->create($inputs);
+        }
+    }
+
     public function registerAbsence($inputs)
     {
         $this->updateOrCreate(

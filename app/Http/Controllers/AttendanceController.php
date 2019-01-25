@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Http\Requests\AttendanceRequest;
+use Auth;
 
 class AttendanceController extends Controller
 {
@@ -18,7 +19,9 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        return view('attendance.index');
+        $userId = Auth::id();
+        $attendance = $this->attendance->getTodaysRecord($userId);
+        return view('attendance.index', compact('attendance'));
     }
 
     public function showAbsenceForm()
@@ -34,6 +37,13 @@ class AttendanceController extends Controller
     public function showMypage()
     {
         return view('attendance.mypage');
+    }
+
+    public function register(AttendanceRequest $request)
+    {
+        $inputs = $request->all();
+        $this->attendance->registerStartTime($inputs);
+        return redirect()->route('attendance.index');
     }
 
     public function registerAbsence(AttendanceRequest $request)

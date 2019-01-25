@@ -13,7 +13,13 @@
     </div>
   </div>
   <div class="button-holder">
-    <a class="button start-btn" href=#openModal>出社時間登録</a>
+    @if (empty($attendance))
+      <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
+    @elseif ($attendance['absent_flg'] === 1)
+      <a class="button absent-label" id="register-attendance" href="">欠席</a>
+    @else
+      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
+    @endif
   </div>
   <ul class="button-wrap">
     <li>
@@ -31,11 +37,16 @@
 <div id="openModal" class="modalDialog">
   <div>
     <div class="register-text-wrap">
-      <p>09:56 で出社時間を登録しますか?</p>
+      <p>Cancelを押して再度登録してください</p>
     </div>
     <div class="register-btn-wrap">
-      <a href="#close" class="cancel-btn">Cancel</a>
-      <a href="#close" class="yes-btn">Yes</a>
+      {!! Form::open(['route' => 'attendance.register']) !!}
+        {!! Form::input('hidden', 'date', date('Y-m-d')) !!}
+        {!! Form::input('hidden', 'start_time', null, ['id' => 'date-time-target']) !!}
+        {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
+        <a href="#close" class="cancel-btn">Cancel</a>
+        {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
+      {!! Form::close() !!}
     </div>
   </div>
 </div>

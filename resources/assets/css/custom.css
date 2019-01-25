@@ -1,5 +1,6 @@
 .btn:focus,
 .btn:active:focus,
+input:focus,
 .search-icon:focus {
   outline: none;
 }
