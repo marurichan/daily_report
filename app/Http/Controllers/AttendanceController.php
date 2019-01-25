@@ -39,10 +39,17 @@ class AttendanceController extends Controller
         return view('attendance.mypage');
     }
 
-    public function register(AttendanceRequest $request)
+    public function setStartTime(AttendanceRequest $request)
     {
         $inputs = $request->all();
         $this->attendance->registerStartTime($inputs);
+        return redirect()->route('attendance.index');
+    }
+
+    public function setEndTime(AttendanceRequest $request, $recordId)
+    {
+        $inputs = $request->all();
+        $this->attendance->find($recordId)->fill($inputs)->save();
         return redirect()->route('attendance.index');
     }
 

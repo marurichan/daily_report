@@ -251,7 +251,7 @@
 
 #clock .today {
   bottom: 20px;
-  left: 20px;
+  left: 15px;
   position: absolute;
   opacity: .5;
 }
@@ -315,7 +315,7 @@ a.button.end-btn {
   background-color: #ce9edd;
 }
 
-a.button.absent-label {
+a.button.disabled {
   pointer-events: none;
   cursor: default;
   background-color: #ccc;

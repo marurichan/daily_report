@@ -38,7 +38,8 @@ Route::group(['prefix' => '/'], function() {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
-    Route::post('attendance', ['as' => 'attendance.register', 'uses' => 'AttendanceController@register']);
+    Route::post('attendance/register', ['as' => 'attendance.register.start', 'uses' => 'AttendanceController@setStartTime']);
+    Route::put('attendance/{id}/register', ['as' => 'attendance.register.end', 'uses' => 'AttendanceController@setEndTime']);
     Route::get('attendance/absence', ['as' => 'attendance.absence', 'uses' => 'AttendanceController@showAbsenceForm']);
     Route::post('attendance/absence', ['as' => 'attendance.absence.store', 'uses' => 'AttendanceController@registerAbsence']);
     Route::get('attendance/modify', ['as' => 'attendance.modify', 'uses' => 'AttendanceController@showModifyForm']);

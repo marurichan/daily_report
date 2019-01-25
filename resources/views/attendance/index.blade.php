@@ -15,8 +15,10 @@
   <div class="button-holder">
     @if (empty($attendance))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
-    @elseif ($attendance['absent_flg'] === 1)
-      <a class="button absent-label" id="register-attendance" href="">欠席</a>
+    @elseif ($attendance->absent_flg === 1)
+      <a class="button disabled" href="">欠席</a>
+    @elseif (!empty($attendance->start_time) && !empty($attendance->end_time))
+      <a class="button disabled" href="">退社済み</a>
     @else
       <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
     @endif
@@ -40,10 +42,15 @@
       <p>Cancelを押して再度登録してください</p>
     </div>
     <div class="register-btn-wrap">
-      {!! Form::open(['route' => 'attendance.register']) !!}
-        {!! Form::input('hidden', 'date', date('Y-m-d')) !!}
-        {!! Form::input('hidden', 'start_time', null, ['id' => 'date-time-target']) !!}
+      @if (empty($attendance))
+        {!! Form::open(['route' => 'attendance.register.start']) !!}
+          {!! Form::input('hidden', 'start_time', null, ['id' => 'date-time-target']) !!}
+      @else
+        {!! Form::open(['route' => ['attendance.register.end', $attendance->id], 'method' => 'put']) !!}
+          {!! Form::input('hidden', 'end_time', null, ['id' => 'date-time-target']) !!}
+      @endif
         {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
+        {!! Form::input('hidden', 'date', date('Y-m-d')) !!}
         <a href="#close" class="cancel-btn">Cancel</a>
         {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
       {!! Form::close() !!}

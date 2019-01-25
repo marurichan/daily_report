@@ -12,8 +12,12 @@ $(function(){
   $('#register-attendance').on('click', function(){
     var date_time = moment().format("YYYY-MM-DD HH:mm:ss");
     var time = moment().format("HH:mm");
-    $('.register-text-wrap').html('<p>' + time + ' で出社時間を登録しますか？');
     $('#date-time-target').val(date_time);
+    if($(this).hasClass("start-btn")){
+      $('.register-text-wrap').html('<p>' + time + ' で出社時間を登録しますか？');
+    }else{
+      $('.register-text-wrap').html('<p>' + time + ' で退社時間を登録しますか？');
+    }
   });
 
 
@@ -37,33 +41,24 @@ $(function(){
 
   // Generate the digits with the needed markup,
   // and add them to the clock
-
   var digit_holder = clock.find('.digits');
 
   $.each(positions, function(){
-
       if(this == ':'){
           digit_holder.append('<div class="dots">');
-      }
-      else{
-
+      }else{
           var pos = $('<div>');
-
           for(var i=1; i<8; i++){
               pos.append('<span class="d' + i + '">');
           }
-
           // Set the digits as key:value pairs in the digits object
           digits[this] = pos;
-
           // Add the digit elements to the page
           digit_holder.append(pos);
       }
-
   });
 
   // Add the weekday names
-
   var weekday_names = 'MON TUE WED THU FRI SAT SUN'.split(' '),
       weekday_holder = clock.find('.weekdays');
 
@@ -75,7 +70,6 @@ $(function(){
 
 
   // Run a timer every second and update the clock
-
   (function update_time(){
 
       // Use moment.js to output the current time as a string
