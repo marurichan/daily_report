@@ -38,7 +38,8 @@ class AttendanceController extends Controller
     {
         $userId = Auth::id();
         $attendanceInfos = $this->attendance->getPersonalRecords($userId);
-        return view('attendance.mypage', compact('attendanceInfos'));
+        $dateSum = $this->culcDatetimeSum($attendanceInfos);
+        return view('attendance.mypage', compact('attendanceInfos', 'dateSum'));
     }
 
     public function setStartTime(AttendanceRequest $request)
@@ -67,6 +68,31 @@ class AttendanceController extends Controller
         $inputs = $request->all();
         $this->attendance->registerModifyRequest($inputs);
         return redirect()->route('attendance.index');
+    }
+
+    public function culcDatetimeSum($attendanceInfos)
+    {
+        $diffSum = 0;
+        $daySum = 0;
+        foreach ($attendanceInfos as $dailyInfo) {
+            if (!$dailyInfo->absent_flg && !empty($dailyInfo->end_time)) {
+                $timeDiff = $this->culcTimeDiff($dailyInfo->start_time, $dailyInfo->end_time);
+                $diffSum = $diffSum + $timeDiff;
+                $daySum++;
+            }
+        }
+        return [
+            'timeSum' => round($diffSum / 3600),
+            'daySum'  => $daySum,
+        ];
+    }
+
+    public function culcTimeDiff($startTime, $endTime)
+    {
+        $startTime = strtotime($startTime);
+        $endTime = strtotime($endTime);
+        $timeDiff = $endTime - $startTime;
+        return $timeDiff;
     }
 
 }
