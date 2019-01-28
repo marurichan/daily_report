@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Http\Requests\AttendanceRequest;
 use Auth;
+use App\Services\CalcDate;
 
 class AttendanceController extends Controller
 {
@@ -34,11 +35,11 @@ class AttendanceController extends Controller
         return view('attendance.modify');
     }
 
-    public function showMypage()
+    public function showMypage(CalcDate $calcDate)
     {
         $userId = Auth::id();
         $attendanceInfos = $this->attendance->getPersonalRecords($userId);
-        $dateSum = $this->culcDatetimeSum($attendanceInfos);
+        $dateSum = $calcDate->calcDatetimeSum($attendanceInfos);
         return view('attendance.mypage', compact('attendanceInfos', 'dateSum'));
     }
 
@@ -68,31 +69,6 @@ class AttendanceController extends Controller
         $inputs = $request->all();
         $this->attendance->registerModifyRequest($inputs);
         return redirect()->route('attendance.index');
-    }
-
-    public function culcDatetimeSum($attendanceInfos)
-    {
-        $diffSum = 0;
-        $daySum = 0;
-        foreach ($attendanceInfos as $dailyInfo) {
-            if (!$dailyInfo->absent_flg && !empty($dailyInfo->end_time)) {
-                $timeDiff = $this->culcTimeDiff($dailyInfo->start_time, $dailyInfo->end_time);
-                $diffSum = $diffSum + $timeDiff;
-                $daySum++;
-            }
-        }
-        return [
-            'timeSum' => round($diffSum / 3600),
-            'daySum'  => $daySum,
-        ];
-    }
-
-    public function culcTimeDiff($startTime, $endTime)
-    {
-        $startTime = strtotime($startTime);
-        $endTime = strtotime($endTime);
-        $timeDiff = $endTime - $startTime;
-        return $timeDiff;
     }
 
 }
