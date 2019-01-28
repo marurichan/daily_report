@@ -30,6 +30,14 @@ class Attendance extends Model
                     ->first();
     }
 
+    public function getPersonalRecords($user_id)
+    {
+        return $this->where('user_id', $user_id)
+                    ->orderBy('date', 'desc')
+                    ->get();
+    }
+
+
     public function registerStartTime($inputs)
     {
         $hasntRecord = $this->where('user_id', $inputs['user_id'])

@@ -1047,6 +1047,66 @@ form.user-search {
   border-left: 10px solid transparent;
 }
 
+
+/**
+ * 勤怠マイページ
+ *
+ */
+.row.absent-row {
+  background-color: #ffcccc;
+}
+
+.my-info {
+  display: inline-block;
+  position: relative;
+  width: 250px;
+  height: 100px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #65d5b5;
+  opacity: .8;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 2px 2px #ccc;
+  margin-bottom: 30px;
+  padding: 15px;
+}
+
+.my-info p {
+  text-align: left;
+}
+
+.my-info .userinfo-box {
+  float: left;
+  position: absolute;
+  bottom: 15px;
+}
+
+.my-info .study-hour {
+  float: right;
+  margin: 0;
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+}
+
+.my-info .study-hour span {
+  font-size: 45px;
+  margin-right: 10px;
+}
+
+.my-info img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
 /**
  * admin共通部
  *

@@ -36,7 +36,9 @@ class AttendanceController extends Controller
 
     public function showMypage()
     {
-        return view('attendance.mypage');
+        $userId = Auth::id();
+        $attendanceInfos = $this->attendance->getPersonalRecords($userId);
+        return view('attendance.mypage', compact('attendanceInfos'));
     }
 
     public function setStartTime(AttendanceRequest $request)
