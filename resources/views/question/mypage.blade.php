@@ -20,7 +20,7 @@
       <tbody>
         @foreach ($questions as $question)
           <tr class="row">
-            <td class="col-xs-2">{{ date('Y-m-d', strtotime($question->created_at)) }}</td>
+            <td class="col-xs-2">{{ $question->created_at->format('Y-m-d') }}</td>
             <td class="col-xs-1">{{ $question->category->name }}</td>
             <td class="col-xs-5">{{ $question->title }}</td>
             <td class="col-xs-2"><span class="point-color">{{ count($question->comment) }}</span></td>

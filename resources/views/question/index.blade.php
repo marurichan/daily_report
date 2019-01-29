@@ -2,7 +2,6 @@
 @section ('content')
 
 <h2 class="brand-header">質問一覧</h2>
-
 <div class="main-wrap">
   {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">

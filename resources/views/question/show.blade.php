@@ -7,7 +7,7 @@
     <div class="panel-heading">
       <img src="{{ $question->user->avatar }}" class="avatar-img">
       <p>{{ $question->user->name }}&nbsp;さんの質問&nbsp;&nbsp;(&nbsp;{{ $question->category->name }}&nbsp;)</p>
-      <p class="question-date">{{ date('Y-m-d H:i', strtotime($question->created_at)) }}</p>
+      <p class="question-date">{{ $question->created_at->format('Y-m-d H:i') }}</p>
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
@@ -31,7 +31,7 @@
           <div class="comment-title">
             <img src="{{ $comment->user->avatar }}" class="avatar-img">
             <p>{{ $comment->user->name }}</p>
-            <p class="comment-date">{{ date('Y-m-d H:i', strtotime($comment->created_at)) }}</p>
+            <p class="comment-date">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
           </div>
           <div class="comment-body">
             {!! nl2br(e($comment->comment)) !!}

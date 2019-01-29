@@ -38,9 +38,10 @@ class AttendanceController extends Controller
     public function showMypage(CalcDate $calcDate)
     {
         $userId = Auth::id();
-        $attendanceInfos = $this->attendance->getPersonalRecords($userId);
-        $dateSum = $calcDate->calcDatetimeSum($attendanceInfos);
-        return view('attendance.mypage', compact('attendanceInfos', 'dateSum'));
+        $workInfos = $this->attendance->getPersonalRecords($userId);
+        $workInfos = $calcDate->convertAttendanceTime($workInfos);
+        $dateSum = $calcDate->calcDatetimeSum($workInfos);
+        return view('attendance.mypage', compact('workInfos', 'dateSum'));
     }
 
     public function setStartTime(AttendanceRequest $request)

@@ -50,7 +50,7 @@
           {!! Form::input('hidden', 'end_time', null, ['id' => 'date-time-target']) !!}
       @endif
         {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
-        {!! Form::input('hidden', 'date', date('Y-m-d')) !!}
+        {!! Form::input('hidden', 'date', Carbon::now()->format('Y-m-d')) !!}
         <a href="#close" class="cancel-btn">Cancel</a>
         {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
       {!! Form::close() !!}

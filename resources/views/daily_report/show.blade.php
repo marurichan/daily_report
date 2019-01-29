@@ -1,11 +1,11 @@
-@extends('partials.outline')
-@section('content')
+@extends ('partials.outline')
+@section ('content')
 
 <h1 class="brand-header">日報詳細</h1>
 <div class="main-wrap">
   <div class="panel panel-success">
     <div class="panel-heading">
-      {{ date("Y/m/d", strtotime($report->reporting_time)) }}&nbsp;&nbsp;の日報
+      {{ $report->reporting_time->format('Y/m/d (D)') }}&nbsp;&nbsp;の日報
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">

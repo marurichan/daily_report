@@ -1,15 +1,13 @@
-@extends('partials.outline')
-
-@section('content')
+@extends ('partials.outline')
+@section ('content')
 
 <h2 class="brand-header">日報作成</h2>
-
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'report.store']) !!}
       {!! Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) !!}
       <div class="form-group form-size-small @if(!empty($errors->first('reporting_time'))) has-error @endif">
-        {!! Form::input('date', 'reporting_time', date('Y-m-d'), ['class' => 'form-control']) !!}
+        {!! Form::input('date', 'reporting_time', Carbon::now()->format('Y-m-d'), ['class' => 'form-control']) !!}
         <span class="help-block">{{$errors->first('reporting_time')}}</span>
       </div>
       <div class="form-group @if(!empty($errors->first('title'))) has-error @endif">
@@ -26,3 +24,4 @@
 </div>
 
 @endsection
+

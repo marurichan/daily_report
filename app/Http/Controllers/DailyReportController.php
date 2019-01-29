@@ -6,15 +6,18 @@ use App\Models\DailyReports;
 use Illuminate\Http\Request;
 use App\Http\Requests\DailyReportRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Services\CalcDate;
 
 class DailyReportController extends Controller
 {
     protected $report;
+    protected $calc;
 
-    public function __construct(DailyReports $report)
+    public function __construct(DailyReports $report, CalcDate $calc)
     {
         $this->middleware('auth');
         $this->report = $report;
+        $this->calc = $calc;
     }
 
     /**
@@ -31,7 +34,7 @@ class DailyReportController extends Controller
         } else {
             $reports = $this->report->getSearchingPersonalReports($userId, $inputs);
         }
-
+        $reports = $this->calc->convertReportingTime($reports);
         return view('daily_report.index', compact('reports'));
     }
 
@@ -50,12 +53,14 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $report = $this->report->find($id);
+        $report->reporting_time = $this->calc->convertStrToCarbon($report->reporting_time);
         return view('daily_report.show', compact('report'));
     }
 
     public function edit($id)
     {
         $report = $this->report->find($id);
+        $report->reporting_time = $this->calc->convertStrToCarbon($report->reporting_time);
         return view('daily_report.edit', compact('report'));
     }
 
