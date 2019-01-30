@@ -35,7 +35,7 @@ class DailyReportController extends Controller
             $reports = $this->report->getSearchingPersonalReports($userId, $inputs);
         }
         $reports = $this->calc->convertReportingTime($reports);
-        return view('daily_report.index', compact('reports'));
+        return view('daily_report.index', compact('reports', 'inputs'));
     }
 
     public function create()

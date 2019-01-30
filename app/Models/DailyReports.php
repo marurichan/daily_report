@@ -36,8 +36,7 @@ class DailyReports extends Model
     public function getSearchingPersonalReports($userId, $serchConditions)
     {
         return $this->filterEqual('user_id', $userId)
-                    ->filterDateRange('reporting_time', $serchConditions['from-date'], '>=')
-                    ->filterDateRange('reporting_time', $serchConditions['to-date'], '<=')
+                    ->filterLike('reporting_time', $serchConditions['search-month'])
                     ->orderby('reporting_time', 'desc')
                     ->get();
     }

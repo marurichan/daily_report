@@ -3,47 +3,13 @@
 
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
-  <div class="btn-wrapper">
-    <a class="btn btn-icon" href="#openModal"><i class="fa fa-search"></i></a>
+  <div class="btn-wrapper daily-report">
+    {!! Form::open(['route' => 'report.index', 'method' => 'GET']) !!}
+      {!! Form::input('month', 'search-month', empty($inputs['search-month']) ? null : $inputs['search-month'], ['class' => 'form-control']) !!}
+      <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
+    {!! Form::close() !!}
     <a class="btn btn-icon" href="{{ route('report.create') }}"><i class="fa fa-plus"></i></a>
   </div>
-
-  <!-- modal -->
-  <div id="openModal" class="modalDialog">
-    <div>
-      {!! Form::open(['route' => 'report.index', 'method' => 'GET']) !!}
-        <a href="#close" title="Close" class="close">X</a>
-        <table class="search-table">
-          <thead class="search-thead"></thead>
-          <h3 class="modal-header">日報検索</h3>
-          <tbody class="search-tbody">
-            <td class="search-td">
-              <label>始め</label>
-            </td>
-            <td class="search-td"></td>
-            <td class="search-td">
-              {!! Form::input('date', 'from-date', null, ['class' => 'form-control']) !!}
-            </td>
-            <td class="search-td">
-              <label>終わり</label>
-            </td>
-            <td class="search-td">
-              {!! Form::input('date', 'to-date', null, ['class' => 'form-control']) !!}
-            </td>
-          </tbody>
-          <tfoot class="search-tfoot">
-            <tr class="search-tr">
-              <td colspan="5" class="search-td">
-                <div class="bottom-btn-wrapper">
-                  {!! Form::input('submit', '', '検索', ['class' => 'btn btn-success']) !!}
-                </div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      {!! Form::close() !!}
-    </div>
-  </div><!-- modal closing tag -->
 
   <div class="content-wrapper table-responsive">
     <table class="table table-striped">

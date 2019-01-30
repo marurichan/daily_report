@@ -938,6 +938,23 @@ form.user-search {
   margin-left: 10px;
 }
 
+
+/**
+ * 日報
+ *
+ */
+.btn-wrapper.daily-report form {
+  display: inline-block;
+}
+
+.btn-wrapper.daily-report form input {
+  display: inline-block;
+  width: 150px;
+  font-size: 12px;
+  color: #aaa;
+  border-radius: 20px;
+}
+
 /**
  * 検索box
  *
