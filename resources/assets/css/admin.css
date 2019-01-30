@@ -1,0 +1,85 @@
+/**
+ * admin共通部
+ *
+ */
+.navbar.admin {
+  background-color: #161a25;
+}
+
+.navbar.admin .nav-left-list li a:hover {
+  background-color: rgba(255,255,255,0.08);
+}
+
+/**
+ * admin login form
+ *
+ */
+.admin-login-box {
+  width: 500px;
+  text-align: center;
+  background-color: #161a25;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+  padding: 40px;
+}
+
+.admin-login-box img {
+  width: 100px;
+  margin: 40px 0 20px 0;
+}
+
+.admin-login-box h2 {
+  font-size: 20px;
+}
+
+.form-wrap {
+  padding: 30px 40px;
+}
+
+.form-wrap .form-group {
+  margin-bottom: 20px;
+}
+
+.form-wrap input {
+  background-color: inherit;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #ccd0d2;
+  border-radius: inherit;
+}
+
+.form-wrap input:focus {
+  border-color: inherit;
+  box-shadow: none;
+}
+
+.form-wrap .has-error input:focus {
+  box-shadow: none;
+}
+
+.admin-login-btn button {
+  padding: 10px 80px;
+  border: none;
+  color: #161a25;
+  font-weight: bold;
+  border-radius: 30px;
+}
+
+.admin-login-btn button:hover {
+  background-color: #aaa;
+}
+
+.forget-password-box {
+  margin-top: 10px;
+}
+
+.forget-password-box a {
+  color: #aaa;
+}
+
+.forget-password-box a:hover {
+  opacity: .5;
+}
+
+

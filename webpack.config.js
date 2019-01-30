@@ -4,11 +4,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    app: './resources/assets/css/custom.css',
+    custom: './resources/assets/css/custom.css',
+    admin: './resources/assets/css/admin.css',
   },
   output: {
     path: path.join(__dirname, 'public/css'),
-    filename: 'custom.css'
+    filename: '[name].css'
   },
   module: {
     rules: [
@@ -22,6 +23,9 @@ module.exports = {
     ]
   },
    plugins: [
-    new ExtractTextPlugin('custom.css')
+    new ExtractTextPlugin({
+      filename: '[name].css'
+    })
    ]
 }
+
