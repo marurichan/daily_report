@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Carbon;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,16 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\DailyReports', 'user_id');
     }
+
+    public function attendance()
+    {
+        return $this->hasOne('App\Models\Attendance', 'user_id')->where('date', Carbon::today()->format('Y-m-d'));
+    }
+
+
+
+
+
 
     public function filterSearchedUsers($searchConditions, $query)
     {

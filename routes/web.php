@@ -55,6 +55,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::resource('report', DailyReportController::class, ['only' => ['index', 'show']]);
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
+    Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
+
     Route::resource('adminuser', AdminUserController::class);
     Route::get('adminuser/{adminuser}/mailedit', ['as' => 'adminuser.mailedit', 'AdminUserController@mailedit']);
     Route::post('adminuser/sendmail', ['as' => 'adminuser.sendmail', 'uses' => 'AdminUserController@sendmail']);
