@@ -41,14 +41,10 @@
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Right Side Of Navbar -->
         <div class="nav navbar-nav navbar-right nav-user">
-          <div class="user-name-box">
-            <img src="{{ Auth::user()->avatar }}">&nbsp;&nbsp;&nbsp;{{ Auth::user()->name }}
-          </div>
           <div class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              <i class="fa fa-ellipsis-h fa-lg" aria-hidden="true"></i>
+            <a class="user-name-box dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <img src="{{ Auth::user()->avatar }}">&nbsp;&nbsp;&nbsp;{{ Auth::user()->name }}
             </a>
-
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="{{ route('logout') }}"

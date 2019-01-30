@@ -806,7 +806,7 @@ form.user-search {
 }
 
 .nav-user {
-  margin-top: 15px;
+  margin-top: 7px;
 }
 
 .dropdown {
@@ -822,7 +822,13 @@ form.user-search {
 .user-name-box {
   display: inline-block;
   font-weight: bold;
-  margin-right: 10px;
+  padding: 5px 10px;
+  color: inherit;
+}
+
+.user-name-box:hover {
+  color: inherit;
+  opacity: .8;
 }
 
 .user-name-box > img {
