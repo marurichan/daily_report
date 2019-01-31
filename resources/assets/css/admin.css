@@ -92,6 +92,68 @@
   width: 70%;
 }
 
+.my-info.personal-info {
+  text-align: center;
+  width: 160px;
+}
+
+.my-info.personal-info:hover {
+  color: #fff;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.personal-info:before {
+  font-family: FontAwesome;
+  content: "\f007";
+  position: absolute;
+  line-height: normal;
+  font-size: 30px;
+  top: 22%;
+  text-align: center;
+  right: 0;
+  left: 0;
+}
+
+.my-info.personal-info p {
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  right: 0;
+  left: 0;
+}
+
+.my-info.absence-info {
+  width: 160px;
+  background-color: #ff7f7f;
+  margin-right: 10px;
+}
+
+.my-info i:before {
+  margin-left: 10px;
+}
+
+.table caption p {
+  display: inline-block;
+  margin: 0 auto 0 -10px;
+  padding: 5px 15px;
+  background-color: #65d5b5;
+  opacity: .8;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: #93c9ff;
+}
+
+.table caption p.still {
+  background-color: #ffbf7f;
+}
+
+.table caption p.absence {
+  background-color: #ff7f7f;
+}
+
 
 
 

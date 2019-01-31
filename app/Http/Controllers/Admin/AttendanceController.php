@@ -14,18 +14,28 @@ class AttendanceController extends Controller
 {
     protected $user;
     protected $attendance;
+    protected $calc;
 
-    public function __construct(User $user, Attendance $attendance)
+    public function __construct(User $user, Attendance $attendance, CalcDate $calc)
     {
         $this->middleware('auth:admin');
         $this->user = $user;
         $this->attendance = $attendance;
+        $this->calc = $calc;
     }
 
     public function index()
     {
         $userInfos = $this->user->all();
+        $userInfos = $this->calc->convertAdminAttendance($userInfos);
         return view('admin.attendance.index', compact('userInfos'));
     }
+
+    public function user()
+    {
+        dd('userlist');
+        return view('admin.attendance.user', compact('userInfos'));
+    }
+
 }
 

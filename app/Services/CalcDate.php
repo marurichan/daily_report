@@ -44,6 +44,20 @@ class CalcDate
         return $question;
     }
 
+    public function convertAdminAttendance($userInfos)
+    {
+        foreach ($userInfos as $info) {
+            $info->created_at = $this->convertStrToCarbon($info->created_at);
+            if (!empty($info->attendance)) {
+                $info->attendance->start_time = $this->convertStrToCarbon($info->attendance->start_time);
+                $info->attendance->end_time   = $this->convertStrToCarbon($info->attendance->end_time);
+                $info->attendance->date       = $this->convertStrToCarbon($info->attendance->date);
+            }
+        }
+        return $userInfos;
+    }
+
+
     public function convertStrToCarbon($strTime)
     {
         if (!empty($strTime)) {
