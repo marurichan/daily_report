@@ -467,7 +467,8 @@ a, a:focus, a:hover {
   text-decoration: none !important;
 }
 
-.btn:hover {
+.btn:hover,
+.btn-wrapper .btn:hover {
   text-decoration: none !important;
   background-color: #30B490;
   border-color: #30B490;
@@ -476,11 +477,17 @@ a, a:focus, a:hover {
 
 .btn {
   padding: 10px 30px;
-  border: solid 1px #30B490;
-  background-color: #fff;
-  color: #30B490;
+  background-color: #65d5b5;
+  opacity: .9;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 2px #ccc;
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
+}
+
+.btn-small {
+  padding: 5px 20px;
 }
 
 .btn-wrapper {
@@ -492,6 +499,9 @@ a, a:focus, a:hover {
   padding: 10px 15px;
   border-radius: 50%;
   border: 1px solid #30B490;
+  background-color: #fff;
+  color: #30b490;
+  box-shadow: none;
 }
 
 .btn-bottom-wrapper {

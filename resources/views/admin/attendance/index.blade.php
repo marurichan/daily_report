@@ -4,7 +4,7 @@
 <h2 class="brand-header">勤怠情報</h2>
 <div class="main-wrap">
   <div class="btn-wrapper">
-    <div class="my-info">
+    <div class="my-info day-info">
       <p>想定出席人数</p>
       <div class="study-hour-box clearfix">
         <div class="userinfo-box"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
@@ -34,7 +34,7 @@
               <td class="col-xs-2">{{ $userInfo->created_at->format('Y/m/d') }}</td>
               <td class="col-xs-3">{{ $userInfo->attendance->start_time->format('H:i') }}</td>
               <td class="col-xs-2">-</td>
-              <td class="col-xs-2"><a class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-2"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endif
         @endforeach
@@ -59,7 +59,7 @@
               <td class="col-xs-1"><img src="{{ $userInfo->avatar }}" class="avatar-img"></td>
               <td class="col-xs-4">{{ $userInfo->name }}</td>
               <td class="col-xs-4">{{ $userInfo->created_at->format('Y/m/d') }}</td>
-              <td class="col-xs-3"><a class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-3"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endif
         @endforeach
@@ -84,7 +84,7 @@
               <td class="col-xs-1"><img src="{{ $userInfo->avatar }}" class="avatar-img"></td>
               <td class="col-xs-4">{{ $userInfo->name }}</td>
               <td class="col-xs-4">{{ $userInfo->created_at->format('Y/m/d') }}</td>
-              <td class="col-xs-3"><a class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+              <td class="col-xs-3"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
             </tr>
           @endif
         @endforeach

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use Carbon;
 
+const START_TIME = '10:00';
+
 class CalcDate
 {
 
@@ -57,6 +59,18 @@ class CalcDate
         return $userInfos;
     }
 
+    public function convertAdminPersonalAttendance($userInfo)
+    {
+        $userInfo->created_at = $this->convertStrToCarbon($userInfo->created_at);
+        if (!empty($userInfo->allAttendance)) {
+            foreach ($userInfo->allAttendance as $attendance) {
+                $attendance->start_time = $this->convertStrToCarbon($attendance->start_time);
+                $attendance->end_time   = $this->convertStrToCarbon($attendance->end_time);
+                $attendance->date       = $this->convertStrToCarbon($attendance->date);
+            }
+        }
+        return $userInfo;
+    }
 
     public function convertStrToCarbon($strTime)
     {
@@ -82,6 +96,24 @@ class CalcDate
             'daySum'  => $daySum,
         ];
     }
+
+    public function calcAbsentLate($userInfo)
+    {
+        $absentCount = 0;
+        $lateCount = 0;
+        foreach ($userInfo->allAttendance as $attendance) {
+            if (!empty($attendance) && $attendance->absent_flg) {
+                $absentCount++;
+            } elseif (!empty($attendance) && $attendance->start_time->format('H:i') > START_TIME) {
+                $lateCount++;
+            }
+        }
+        return [
+            'absentCount' => $absentCount,
+            'lateCount'   => $lateCount,
+        ];
+    }
+
 
 }
 

@@ -124,7 +124,6 @@
 }
 
 .my-info.absence-info {
-  width: 160px;
   background-color: #ff7f7f;
   margin-right: 10px;
 }
@@ -152,6 +151,57 @@
 
 .table caption p.absence {
   background-color: #ff7f7f;
+}
+
+span.attention {
+  color: tomato;
+}
+
+.user-info-box {
+  margin: 20px 50px 40px;
+  padding: 20px;
+  position: relative;
+}
+
+.user-info-box .left-info {
+  float: left;
+}
+
+.user-info-box .right-info {
+  float: right;
+}
+
+.user-info-box .left-info img {
+  width: 70px;
+  margin: 0 10px 5px 0;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.user-info-box .left-info .user-name {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.user-info-box .left-info .user-email {
+  margin: 0 0 0 25px;
+}
+
+.user-info-box .left-info i:before {
+  margin-left: 5px;
+}
+
+.right-info .my-info {
+  width: 160px;
+}
+
+.my-info .study-hour.start-date {
+  margin-bottom: 15px;
+}
+
+.my-info .study-hour.start-date span {
+  font-size: 20px;
 }
 
 

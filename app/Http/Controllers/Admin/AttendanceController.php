@@ -31,10 +31,12 @@ class AttendanceController extends Controller
         return view('admin.attendance.index', compact('userInfos'));
     }
 
-    public function user()
+    public function user($userId)
     {
-        dd('userlist');
-        return view('admin.attendance.user', compact('userInfos'));
+        $userInfo = $this->user->find($userId);
+        $userInfo = $this->calc->convertAdminPersonalAttendance($userInfo);
+        $absentLateCount = $this->calc->calcAbsentLate($userInfo);
+        return view('admin.attendance.user', compact('userInfo', 'absentLateCount'));
     }
 
 }

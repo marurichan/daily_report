@@ -33,49 +33,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Attendance', 'user_id')->where('date', Carbon::today()->format('Y-m-d'));
     }
 
-
-
-
-
-
-    public function filterSearchedUsers($searchConditions, $query)
+    public function allAttendance()
     {
-        foreach ($searchConditions as $conditionName => $conditionValue) {
-            switch ($conditionName) {
-                case 'from_date':
-                    $query->filterHireDate($conditionValue, '>=');
-                    break;
-                case 'to_date':
-                    $query->filterHireDate($conditionValue, '<=');
-                    break;
-                default:
-                    $query->filterCondition($conditionName, $conditionValue);
-                    break;
-            }
-        }
-
-        return $query;
+        return $this->hasMany('App\Models\Attendance', 'user_id')->orderBy('date', 'desc');
     }
-
-    public function scopeFilterCondition($query, $conditionName, $conditionValue)
-    {
-        if (!empty($conditionValue)) {
-            $query->whereHas('info', function($query) use ($conditionName, $conditionValue) {
-                return $query->where($conditionName, $conditionValue);
-            });
-        }
-    }
-
-    public function scopeFilterHireDate($query, $date, $inequality)
-    {
-        if (!empty($date)) {
-            $query->whereHas('info', function($query) use ($date, $inequality) {
-                return $query->where('hire_date', $inequality, date($date));  
-            });
-        }
-    }
-
-
 
 
 
