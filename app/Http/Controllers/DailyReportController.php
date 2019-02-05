@@ -34,7 +34,6 @@ class DailyReportController extends Controller
         } else {
             $reports = $this->report->getSearchingPersonalReports($userId, $inputs);
         }
-        $reports = $this->calc->convertReportingTime($reports);
         return view('daily_report.index', compact('reports', 'inputs'));
     }
 
@@ -53,14 +52,12 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $report = $this->report->find($id);
-        $report->reporting_time = $this->calc->convertStrToCarbon($report->reporting_time);
         return view('daily_report.show', compact('report'));
     }
 
     public function edit($id)
     {
         $report = $this->report->find($id);
-        $report->reporting_time = $this->calc->convertStrToCarbon($report->reporting_time);
         return view('daily_report.edit', compact('report'));
     }
 

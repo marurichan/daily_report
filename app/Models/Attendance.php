@@ -13,6 +13,12 @@ class Attendance extends Model
 
     public $timestamps = false;
 
+    protected $dates = [
+        'start_time',
+        'end_time',
+        'date',
+    ];
+
     protected $fillable = [
         'user_id',
         'start_time',
@@ -23,10 +29,10 @@ class Attendance extends Model
         'date',
     ];
 
-    public function getTodaysRecord($user_id)
+    public function getSpecificDay($user_id, $date)
     {
         return $this->where('user_id', $user_id)
-                    ->where('date', date('Y-m-d'))
+                    ->where('date', $date->format('Y-m-d'))
                     ->first();
     }
 
@@ -36,7 +42,6 @@ class Attendance extends Model
                     ->orderBy('date', 'desc')
                     ->get();
     }
-
 
     public function registerStartTime($inputs)
     {

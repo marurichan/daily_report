@@ -530,7 +530,6 @@ a, a:focus, a:hover {
   padding: 10px 20px;
   border-radius: 10px;
   background-color: #ff6347;
-  border: 1px solid #78341a;
   color: #fff;
   margin-left: 10px;
 }
@@ -862,6 +861,7 @@ form.user-search {
   padding: 8px 20px;
   font-weight: 1000;
   box-sizing: border-box;
+  box-shadow: none;
   color: #636b6f;
 }
 

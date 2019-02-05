@@ -11,17 +11,19 @@ use App\Services\CalcDate;
 class AttendanceController extends Controller
 {
     protected $attendance;
+    protected $calc;
 
-    public function __construct(Attendance $attendance)
+    public function __construct(Attendance $attendance, CalcDate $calc)
     {
         $this->middleware('auth');
         $this->attendance = $attendance;
+        $this->calc = $calc;
     }
 
     public function index()
     {
         $userId = Auth::id();
-        $attendance = $this->attendance->getTodaysRecord($userId);
+        $attendance = $this->attendance->getSpecificDay($userId, $this->calc->today);
         return view('attendance.index', compact('attendance'));
     }
 
@@ -39,7 +41,6 @@ class AttendanceController extends Controller
     {
         $userId = Auth::id();
         $workInfos = $this->attendance->getPersonalRecords($userId);
-        $workInfos = $calcDate->convertAttendanceTime($workInfos);
         $dateSum = $calcDate->calcDatetimeSum($workInfos);
         return view('attendance.mypage', compact('workInfos', 'dateSum'));
     }

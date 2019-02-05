@@ -18,7 +18,11 @@ class Questions extends Model
         'answer',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     public function user()
     {
@@ -37,16 +41,7 @@ class Questions extends Model
 
     public function getMyPageQuestions($user_id)
     {
-
         return $this->where('user_id', $user_id)->orderby('created_at', 'desc')->get();
-
-    }
-
-    public function updateAnswer($data)
-    {
-        $this->find($data['id'])->update([
-            "answer" => $data['answer'],
-        ]);
     }
 
     public function getSearchingQuestion($conditions)

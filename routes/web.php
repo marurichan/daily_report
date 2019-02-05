@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::get('attendance/{id}/user', ['as' => 'attendance.user', 'uses' => 'AttendanceController@user']);
+    Route::get('attendance/{id}/user/edit/{date}', ['as' => 'attendance.user.edit', 'uses' => 'AttendanceController@edit']);
 
     Route::resource('adminuser', AdminUserController::class);
     Route::get('adminuser/{adminuser}/mailedit', ['as' => 'adminuser.mailedit', 'AdminUserController@mailedit']);

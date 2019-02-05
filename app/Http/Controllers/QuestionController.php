@@ -9,7 +9,6 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionsRequest;
 use App\Http\Requests\CommentRequest;
-use App\Services\CalcDate;
 
 const MAX_PAGE_COUNT = 30;
 
@@ -65,10 +64,9 @@ class QuestionController extends Controller
         return redirect()->route('question.index');
     }
 
-    public function show(CalcDate $calc, $id)
+    public function show($id)
     {
         $question = $this->question->find($id);
-        $question = $calc->convertQuestionCommentTime($question);
         return view('question.show', compact('question'));
     }
 
@@ -92,10 +90,9 @@ class QuestionController extends Controller
         return redirect()->route('question.index');
     }
 
-    public function myPage(CalcDate $calc, $userId)
+    public function myPage($userId)
     {
         $questions = $this->question->getMyPageQuestions($userId);
-        $questions = $calc->convertQuestionTime($questions);
         return view('question.mypage', compact('questions'));
     }
 

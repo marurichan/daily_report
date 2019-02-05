@@ -27,16 +27,22 @@ class AttendanceController extends Controller
     public function index()
     {
         $userInfos = $this->user->all();
-        $userInfos = $this->calc->convertAdminAttendance($userInfos);
         return view('admin.attendance.index', compact('userInfos'));
     }
 
     public function user($userId)
     {
         $userInfo = $this->user->find($userId);
-        $userInfo = $this->calc->convertAdminPersonalAttendance($userInfo);
         $absentLateCount = $this->calc->calcAbsentLate($userInfo);
         return view('admin.attendance.user', compact('userInfo', 'absentLateCount'));
+    }
+
+    public function edit($userId, $date)
+    {
+        $userInfo = $this->user->find($userId);
+        $date = $this->calc->convertStrToCarbon($date);
+        $attendance = $this->attendance->getSpecificDay($userId, $date);
+        return view('admin.attendance.edit', compact('userInfo', 'attendance'));
     }
 
 }

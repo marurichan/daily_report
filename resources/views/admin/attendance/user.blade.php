@@ -52,8 +52,8 @@
               <td class="col-xs-1">{{ $attendance->date->format('m/d') }}</td>
               <td class="col-xs-1">{{ $attendance->date->format('D') }}</td>
               @if ($attendance->absent_flg)
-                <td class="col-xs-2"><span class="attention">欠席</span></td>
-              @elseif ($attendance->date == Carbon::today())
+                <td class="col-xs-2">欠席</span></td>
+              @elseif ($attendance->date == Carbon::today() && empty($attendance->end_time))
                 <td class="col-xs-2">研修中</td>
               @else
                 <td class="col-xs-2">出社</td>
@@ -74,7 +74,7 @@
                 <td class="col-xs-2"><span class="attention">あり</span></td>
               @endif
               <td class="col-xs-2">
-                <a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess btn-small">
+                <a href="{{ route('admin.attendance.user.edit', [$userInfo->id, $attendance->date->format('Y-m-d')]) }}" class="btn btn-sucssess btn-small">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
               </td>

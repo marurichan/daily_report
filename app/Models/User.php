@@ -19,6 +19,12 @@ class User extends Authenticatable
         'avatar',
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     protected $hidden = [
         'remember_token',
     ];

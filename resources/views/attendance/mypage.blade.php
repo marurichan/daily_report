@@ -48,9 +48,9 @@
             @if ($workInfo->absent_flg)
               <td class="col-xs-2">欠席</td>
             @elseif (!empty($workInfo->start_time) && empty($workInfo->end_time))
-              <td class="col-xs-2">出社中</td>
+              <td class="col-xs-2">研修中</td>
             @else
-              <td class="col-xs-2">-</td>
+              <td class="col-xs-2">出社</td>
             @endif
             <td class="col-xs-2">{{ empty($workInfo->request_content) ? '-' : '申請中' }}</td>
           </tr>

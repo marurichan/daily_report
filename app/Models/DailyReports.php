@@ -17,7 +17,12 @@ class DailyReports extends Model
         'reporting_time',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'reporting_time',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     public function user()
     {
