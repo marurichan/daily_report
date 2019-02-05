@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Services\SearchingScope;
+use App\Models\User;
+use App\Models\TagCategory;
+use App\Models\Comment;
 
-class Questions extends Model
+class Question extends Model
 {
     use SoftDeletes, SearchingScope;
 
@@ -26,25 +29,25 @@ class Questions extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Models\TagCategory', 'tag_category_id');
+        return $this->belongsTo(TagCategory::class, 'tag_category_id');
     }
 
     public function comment()
     {
-        return $this->hasMany('App\Models\Comment', 'question_id');
+        return $this->hasMany(Comment::class, 'question_id');
     }
 
-    public function getMyPageQuestions($user_id)
+    public function fetchMyPageQuestions($user_id)
     {
         return $this->where('user_id', $user_id)->orderby('created_at', 'desc')->get();
     }
 
-    public function getSearchingQuestion($conditions)
+    public function fetchSearchingQuestion($conditions)
     {
         return $this->filterLike('title', $conditions['search_word'])
                     ->filterEqual('tag_category_id', $conditions['tag_category_id'])

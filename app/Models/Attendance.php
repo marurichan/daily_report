@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use App\Services\SearchingScope;
 
 class Attendance extends Model
@@ -29,14 +30,19 @@ class Attendance extends Model
         'date',
     ];
 
-    public function getSpecificDay($user_id, $date)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function fetchSpecificDay($user_id, $date)
     {
         return $this->where('user_id', $user_id)
                     ->where('date', $date->format('Y-m-d'))
                     ->first();
     }
 
-    public function getPersonalRecords($user_id)
+    public function fetchPersonalRecords($user_id)
     {
         return $this->where('user_id', $user_id)
                     ->orderBy('date', 'desc')

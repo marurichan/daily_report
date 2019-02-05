@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Questions;
+use App\Models\Question;
 use App\Models\TagCategory;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class QuestionController extends Controller
     protected $category;
     protected $comment;
 
-    public function __construct(Questions $question, TagCategory $category, Comment $comment)
+    public function __construct(Question $question, TagCategory $category, Comment $comment)
     {
         $this->middleware('auth');
         $this->question = $question;
@@ -37,7 +37,7 @@ class QuestionController extends Controller
         $inputs = $request->all();
 
         if (array_key_exists('search_word', $inputs)) {
-            $questions = $this->question->getSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
+            $questions = $this->question->fetchSearchingQuestion($inputs)->paginate(MAX_PAGE_COUNT);
         } else {
             $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         }
@@ -92,7 +92,7 @@ class QuestionController extends Controller
 
     public function myPage($userId)
     {
-        $questions = $this->question->getMyPageQuestions($userId);
+        $questions = $this->question->fetchMyPageQuestions($userId);
         return view('question.mypage', compact('questions'));
     }
 

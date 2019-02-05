@@ -23,7 +23,7 @@ class AttendanceController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $attendance = $this->attendance->getSpecificDay($userId, $this->calc->today);
+        $attendance = $this->attendance->fetchSpecificDay($userId, $this->calc->today);
         return view('attendance.index', compact('attendance'));
     }
 
@@ -40,7 +40,7 @@ class AttendanceController extends Controller
     public function showMypage(CalcDate $calcDate)
     {
         $userId = Auth::id();
-        $workInfos = $this->attendance->getPersonalRecords($userId);
+        $workInfos = $this->attendance->fetchPersonalRecords($userId);
         $dateSum = $calcDate->calcDatetimeSum($workInfos);
         return view('attendance.mypage', compact('workInfos', 'dateSum'));
     }

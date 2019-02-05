@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DailyReports;
+use App\Models\DailyReport;
 use Illuminate\Http\Request;
 use App\Http\Requests\DailyReportRequest;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ class DailyReportController extends Controller
     protected $report;
     protected $calc;
 
-    public function __construct(DailyReports $report, CalcDate $calc)
+    public function __construct(DailyReport $report, CalcDate $calc)
     {
         $this->middleware('auth');
         $this->report = $report;
@@ -30,9 +30,9 @@ class DailyReportController extends Controller
         $inputs = $request->all();
 
         if (empty($inputs)) {
-            $reports = $this->report->getAllPersonalReports($userId);
+            $reports = $this->report->fetchAllPersonalReports($userId);
         } else {
-            $reports = $this->report->getSearchingPersonalReports($userId, $inputs);
+            $reports = $this->report->fetchSearchingPersonalReports($userId, $inputs);
         }
         return view('daily_report.index', compact('reports', 'inputs'));
     }

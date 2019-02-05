@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Attendance;
+use App\Models\DailyReport;
 use DB;
 use Carbon;
 
@@ -31,20 +33,18 @@ class User extends Authenticatable
 
     public function dailyReport()
     {
-        return $this->hasMany('App\Models\DailyReports', 'user_id');
+        return $this->hasMany(DailyReport::class, 'user_id');
     }
 
     public function attendance()
     {
-        return $this->hasOne('App\Models\Attendance', 'user_id')->where('date', Carbon::today()->format('Y-m-d'));
+        return $this->hasOne(Attendance::class, 'user_id')->where('date', Carbon::today()->format('Y-m-d'));
     }
 
     public function allAttendance()
     {
-        return $this->hasMany('App\Models\Attendance', 'user_id')->orderBy('date', 'desc');
+        return $this->hasMany(Attendance::class, 'user_id')->orderBy('date', 'desc');
     }
-
-
 
     public function createUserInstance($slackId)
     {

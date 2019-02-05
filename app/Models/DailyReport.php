@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Services\SearchingScope;
+use App\Models\User;
 
-class DailyReports extends Model
+class DailyReport extends Model
 {
     use SoftDeletes, SearchingScope;
 
@@ -26,11 +27,11 @@ class DailyReports extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     // SearchingScope traitに定義されている検索用scopeを使用
-    public function getAllPersonalReports($userId)
+    public function fetchAllPersonalReports($userId)
     {
         return $this->filterEqual('user_id', $userId)
                     ->orderby('reporting_time', 'desc')
@@ -38,7 +39,7 @@ class DailyReports extends Model
     }
 
     // SearchingScope traitに定義されている検索用scopeを使用
-    public function getSearchingPersonalReports($userId, $serchConditions)
+    public function fetchSearchingPersonalReports($userId, $serchConditions)
     {
         return $this->filterEqual('user_id', $userId)
                     ->filterLike('reporting_time', $serchConditions['search-month'])

@@ -39,9 +39,8 @@ class AttendanceController extends Controller
 
     public function edit($userId, $date)
     {
-        $userInfo = $this->user->find($userId);
         $date = $this->calc->convertStrToCarbon($date);
-        $attendance = $this->attendance->getSpecificDay($userId, $date);
+        $attendance = $this->attendance->fetchSpecificDay($userId, $date);
         return view('admin.attendance.edit', compact('userInfo', 'attendance'));
     }
 

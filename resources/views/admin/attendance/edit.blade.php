@@ -5,14 +5,14 @@
 <div class="main-wrap">
   <div class="user-info-box clearfix">
     <div class="left-info">
-      <img src="{{ $userInfo->avatar }}"><p class="user-name">{{ $userInfo->name }}</p>
-      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">{{ $userInfo->email }}</p></i>
+      <img src="{{ $attendance->user->avatar }}"><p class="user-name">{{ $attendance->user->name }}</p>
+      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">{{ $attendance->user->email }}</p></i>
     </div>
     <div class="right-info">
       <div class="my-info">
         <p>研修開始日</p>
         <div class="study-hour-box clearfix">
-          <p class="study-hour start-date"><span>{{ $userInfo->created_at->format('Y-m-d') }}</span></p>
+          <p class="study-hour start-date"><span>{{ $attendance->user->created_at->format('Y-m-d') }}</span></p>
         </div>
       </div>
     </div>
