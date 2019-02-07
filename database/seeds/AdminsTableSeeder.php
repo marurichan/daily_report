@@ -10,8 +10,8 @@ class AdminUsersTableSeeder extends Seeder
         AdminUsers::truncate();
 
         AdminUsers::create([
-            'name' => 'admin',
-            'password' => bcrypt('1234'),
+            'name' => 'gizumo-admin',
+            'password' => bcrypt('gizumo0515'),
             'user_info_id' => 2,
             'privileges' => 1,
         ]);

@@ -7,6 +7,12 @@ $(function(){
     $('form').submit();
   });
 
+  // Admin個別勤怠作成
+  $('.date-form input').on('change', function(){
+    var date = $(this).val();
+    console.log(date);
+    $('#date-target').val(date);
+  });
 
   // 出社退社時間登録用
   $('#register-attendance').on('click', function(){

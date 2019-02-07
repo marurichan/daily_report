@@ -31,7 +31,7 @@
       <div class="form-group">
         {!! Form::input('time', 'end_time', null, ['class' => 'form-control']) !!}
       </div>
-      {!! Form::button('修正', ['class' => 'btn btn-modify', 'type' => 'submit']) !!}
+      {!! Form::button('作成', ['class' => 'btn btn-modify', 'type' => 'submit']) !!}
     {!! Form::close() !!}
     {!! Form::open(['route' => ['admin.attendance.user.update', $userInfo->id], 'method' => 'post']) !!}
       {!! Form::input('hidden', 'user_id', $userInfo->id) !!}
@@ -39,7 +39,7 @@
       {!! Form::input('hidden', 'end_time', null) !!}
       {!! Form::input('hidden', 'absent_flg', 1) !!}
       {!! Form::input('hidden', 'absent_reason', '管理画面から登録') !!}
-      {!! Form::input('hidden', 'date', null) !!}
+      {!! Form::input('hidden', 'date', null, ['id' => 'date-target']) !!}
       {!! Form::button('欠席', ['class' => 'btn btn-danger', 'type' => 'submit']) !!}
     {!! Form::close() !!}
   </div>

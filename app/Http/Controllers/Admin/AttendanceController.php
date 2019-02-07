@@ -45,7 +45,10 @@ class AttendanceController extends Controller
 
     public function store(Request $request)
     {
-        
+        $inputs = $request->all();
+        $inputs = $this->calc->makeDatetimeCarbon($inputs);
+        $this->attendance->create($inputs);
+        return redirect()->route('admin.attendance.user', $inputs['user_id']);
     }
 
     public function edit($userId, $date)
