@@ -57,7 +57,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::get('attendance/{id}/user', ['as' => 'attendance.user', 'uses' => 'AttendanceController@user']);
+    Route::get('attendance/{id}/user/create', ['as' => 'attendance.user.create', 'uses' => 'AttendanceController@create']);
     Route::get('attendance/{id}/user/edit/{date}', ['as' => 'attendance.user.edit', 'uses' => 'AttendanceController@edit']);
+    Route::post('attendance/{id}/user', ['as' => 'attendance.user.store', 'uses' => 'AttendanceController@store']);
+    Route::put('attendance/{id}/user', ['as' => 'attendance.user.update', 'uses' => 'AttendanceController@update']);
 
     Route::resource('adminuser', AdminUserController::class);
     Route::get('adminuser/{adminuser}/mailedit', ['as' => 'adminuser.mailedit', 'AdminUserController@mailedit']);

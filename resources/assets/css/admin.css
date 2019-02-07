@@ -133,6 +133,10 @@
   margin-left: 10px;
 }
 
+.btn-wrapper {
+  padding: 0 70px 20px;
+}
+
 .table caption p {
   display: inline-block;
   margin: 0 auto 0 -10px;
@@ -159,7 +163,7 @@ span.attention {
 }
 
 .user-info-box {
-  margin: 20px 50px 40px;
+  margin: 20px 40px;
   padding: 20px;
   position: relative;
 }
@@ -197,11 +201,11 @@ span.attention {
   width: 160px;
 }
 
-.my-info .study-hour.start-date {
+.my-info .study-hour.study-date {
   margin-bottom: 15px;
 }
 
-.my-info .study-hour.start-date span {
+.my-info .study-hour.study-date span {
   font-size: 20px;
 }
 
@@ -211,17 +215,23 @@ span.attention {
  */
 .request-box {
   padding: 0 50px;
+  margin-bottom: 30px;
+}
+
+.request-box .request-title {
+  margin-bottom: 10px;
+  padding: 0 5px;
 }
 
 .request-box p {
   display: inline-block;
-  background-color: #ffbf7f;
-  padding: 5px 15px;
-  opacity: .8;
-  color: #fff;
-  border-radius: 10px;
   font-weight: bold;
-  box-shadow: 0 2px 2px #ccc;  font-weight: bold;
+  margin-left: 5px;
+  color: #f4a460;
+}
+
+.request-box p.absent {
+  color: tomato;
 }
 
 .request-box .request-content {
@@ -244,6 +254,58 @@ span.attention {
   border-bottom: 10px solid #f5f5f5;
   border-left: 10px solid transparent;
 }
+
+.attendance-modify-box {
+  padding: 10px 50px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.attendance-modify-box form {
+  display: inline-block;
+}
+
+.attendance-modify-box .date-form input {
+  font-size: 14px;
+  margin-right: 20px;
+  height: 40px;
+}
+
+.attendance-modify-box .form-group {
+  display: inline-block;
+}
+
+.attendance-modify-box  input {
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.attendance-modify-box  .to-time {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.attendance-modify-box button {
+  display: inline-block;
+}
+
+.attendance-modify-box button.btn-modify {
+  margin-left: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

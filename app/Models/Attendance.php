@@ -75,5 +75,18 @@ class Attendance extends Model
              ->save();
     }
 
+    public function setTypeAttribute($type)
+    {
+        dd($type);
+        if ($type) {
+            $this->attributes['absent_flg'] = 0;
+            $this->attributes['absent_reason'] = null;
+        } else {
+            $this->attributes['start_time'] = null;
+            $this->attributes['end_time'] = null;
+            $this->attributes['absent_flg'] = 1;
+        }
+    }
+
 }
 

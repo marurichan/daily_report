@@ -26,12 +26,17 @@
       <div class="my-info">
         <p>研修開始日</p>
         <div class="study-hour-box clearfix">
-          <p class="study-hour start-date"><span>{{ $userInfo->created_at->format('Y/m/d') }}</span></p>
+          <p class="study-hour study-date"><span>{{ $userInfo->created_at->format('Y/m/d') }}</span></p>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="btn-wrapper">
+    <a href="{{ route('admin.attendance.user.create', $userInfo->id) }}" class="btn btn-icon">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </a>
+  </div>
   <div class="content-wrapper table-responsive">
     <table class="table">
       <thead>

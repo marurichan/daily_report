@@ -37,11 +37,30 @@ class AttendanceController extends Controller
         return view('admin.attendance.user', compact('userInfo', 'absentLateCount'));
     }
 
+    public function create($userId)
+    {
+        $userInfo = $this->user->find($userId);
+        return view('admin.attendance.create', compact('userInfo'));
+    }
+
+    public function store(Request $request)
+    {
+        
+    }
+
     public function edit($userId, $date)
     {
         $date = $this->calc->convertStrToCarbon($date);
         $attendance = $this->attendance->fetchSpecificDay($userId, $date);
         return view('admin.attendance.edit', compact('userInfo', 'attendance'));
+    }
+
+    public function update(Request $request, $userId)
+    {
+        $inputs = $request->all();
+        $inputs = $this->calc->makeDatetimeCarbon($inputs);
+        $this->attendance->find($inputs['id'])->fill($inputs)->save();
+        return redirect()->route('admin.attendance.user', $userId);
     }
 
 }
