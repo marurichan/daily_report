@@ -309,17 +309,43 @@ span.attention {
   width: 35%;
 }
 
+.right-parts {
+  margin: 20px 10px;
+  opacity: .8;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px #ccc;
+  background-color: #ffbf7f;
+  padding: 5px 15px;
+}
 
+.right-parts.absent {
+  background-color: #ff7f7f;
+}
 
+.right-parts caption {
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
+.right-parts a {
+  color: #fff;
+  cursor: pointer;
+}
 
+.right-parts a:hover {
+  opacity: .8;
+}
 
+.main-wrap.admin-report {
+  padding: 30px 100px;
+}
 
-
-
-
-
-
+.main-wrap.admin-report .panel {
+  margin-bottom: 60px;
+}
 
 
 

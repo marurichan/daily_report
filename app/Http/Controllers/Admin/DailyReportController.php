@@ -13,11 +13,13 @@ use App\Services\CalcDate;
 class DailyReportController extends Controller
 {
     protected $user;
+    protected $report;
 
-    public function __construct(User $user, CalcDate $calc)
+    public function __construct(User $user, DailyReport $report, CalcDate $calc)
     {
         $this->middleware('auth:admin');
         $this->user = $user;
+        $this->report = $report;
         $this->calc = $calc;
     }
 
@@ -27,10 +29,10 @@ class DailyReportController extends Controller
         return view('admin.daily_report.index', compact('users'));
     }
 
-    public function show($id)
+    public function show($userId)
     {
-        $report = $this->report->find($id);
-        return view('admin.daily_report.show', compact('report'));
+        $reports = $this->report->fetchAllPersonalReports($userId);
+        return view('admin.daily_report.show', compact('reports'));
     }
 }
 

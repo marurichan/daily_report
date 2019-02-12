@@ -1,39 +1,33 @@
-@extends('partials.admin_nav')
+@extends ('partials.admin_outline')
+@section ('content')
 
-@section('content')
+<h2 class="brand-header">個別日報一覧</h2>
+<div class="main-wrap admin-report">
 
-  <h1 class="brand-header">日報詳細</h1>
-    <div class="container">
-      <ul class="dailyreport-info-list">
-        <li>
-          <h3>苗字</h3> 
-            {{ $report->user->info->last_name }}
-        </li>
+  @foreach ($reports as $report)
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <img src="{{ $report->user->avatar }}" class="avatar-img">
+        <p>{{ $report->reporting_time->format('Y/m/d (D)') }} の日報</p>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <tbody>
+            <tr>
+              <th class="table-column">Title</th>
+              <td class="td-text">{{ $report->title }}</td>
+            </tr>
+            <tr>
+              <th class="table-column">Content</th>
+              <td class='td-text'>{!! nl2br(e($report->contents)) !!}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  @endforeach
 
-        <li>
-          <h3>名前</h3>
-            {{ $report->user->info->first_name }}
-        </li>
-
-        <li>
-          <h3>日付</h3>  
-            {{ date("Y/m/d", strtotime($report->reporting_time)) }}
-        </li>
-
-        <li>
-          <h3>タイトル</h3>
-            {{ $report->title }}
-        </li>
-
-        <li>
-          <h3>本文</h3>
-            {{ $report->contents }}
-        </li>
-      <ul>
-    </div><!-- container closing tag -->
-
-  <div class="bottom-btn-wrapper">
-    <a href="{{ route('admin.report.index') }}" class="btn">日報一覧画面へ</a>
-  </div>
+</div>
 
 @endsection
+

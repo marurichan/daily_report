@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::post('attendance/{id}/user', ['as' => 'attendance.user.store', 'uses' => 'AttendanceController@store']);
     Route::put('attendance/{id}/user', ['as' => 'attendance.user.update', 'uses' => 'AttendanceController@update']);
     Route::get('report', ['as' => 'report.index', 'uses' => 'DailyReportController@index']);
-
+    Route::get('report/{id}/show', ['as' => 'report.show', 'uses' => 'DailyReportController@show']);
 
 
     Route::resource('adminuser', AdminUserController::class);
