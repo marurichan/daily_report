@@ -35,6 +35,11 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function report()
+    {
+        return $this->hasOne(DailyReport::class, 'reporting_time', 'date');
+    }
+
     public function fetchSpecificDay($user_id, $date)
     {
         return $this->where('user_id', $user_id)

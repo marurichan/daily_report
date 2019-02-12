@@ -61,6 +61,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('attendance/{id}/user/edit/{date}', ['as' => 'attendance.user.edit', 'uses' => 'AttendanceController@edit']);
     Route::post('attendance/{id}/user', ['as' => 'attendance.user.store', 'uses' => 'AttendanceController@store']);
     Route::put('attendance/{id}/user', ['as' => 'attendance.user.update', 'uses' => 'AttendanceController@update']);
+    Route::get('report', ['as' => 'report.index', 'uses' => 'DailyReportController@index']);
+
+
 
     Route::resource('adminuser', AdminUserController::class);
     Route::get('adminuser/{adminuser}/mailedit', ['as' => 'adminuser.mailedit', 'AdminUserController@mailedit']);
@@ -76,15 +79,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::resource('user', UserController::class);
 
-    // access_right
-    Route::get('/access_right', ['as' => 'access_right.index', 'uses' => 'AccessRightController@index']);
-    Route::post('/access_right/sendSlack', ['as' => 'access_right.sendSlack', 'uses' => 'AccessRightController@sendSlack']);
-    Route::get('/access_right/permission', ['as' => 'access_right.permission', 'uses' => 'AccessRightController@permission']);
-    Route::post('/access_right/replyMail/{query}', ['as' => 'access_right.replyMail', 'uses' => 'AccessRightController@replyMail']);
-
-    Route::get('question/create', ['as' => 'question.create', 'uses' => 'QuestionController@create']);
-    Route::put('question/create', ['as' => 'question.updateAnswer', 'uses' => 'QuestionController@updateAnswer']);
-    Route::resource('question', QuestionController::class);
 
 });
 

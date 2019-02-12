@@ -17,11 +17,11 @@ class CreateAttendanceTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->dateTime('start_time')->nullable();
-            $table->dateTIme('end_time')->nullable();
+            $table->dateTime('end_time')->nullable();
             $table->string('request_content')->nullable();
             $table->integer('absent_flg')->default(0);
             $table->string('absent_reason')->nullable();
-            $table->date('date');
+            $table->dateTime('date');
         });
     }
 

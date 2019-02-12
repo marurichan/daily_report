@@ -72,7 +72,7 @@
             <a href="{{ route('admin.attendance.index') }}"><i class="fa fa-briefcase">&nbsp;&nbsp;勤怠</i></a>
           </li>
           <li>
-            <a href="{{ route('report.index') }}"><i class="fa fa-file-text-o">&nbsp;&nbsp;&nbsp;日報</i></a>
+            <a href="{{ route('admin.report.index') }}"><i class="fa fa-file-text-o">&nbsp;&nbsp;&nbsp;日報</i></a>
           </li>
           <li>
             <a href="{{ route('question.index') }}"><i class="fa fa-comments-o">&nbsp;&nbsp;質問掲示板</i></a>

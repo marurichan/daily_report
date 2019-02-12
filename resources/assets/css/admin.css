@@ -295,7 +295,19 @@ span.attention {
 }
 
 
+/**
+ * 日報一覧ページ
+ *
+ */
+.left-box {
+  float: left;
+  width: 65%;
+}
 
+.right-box {
+  float: right;
+  width: 35%;
+}
 
 
 
