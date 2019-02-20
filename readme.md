@@ -55,6 +55,7 @@ SLACK_API_KEY=xoxp-42620444977-362509122881-400641301381-e88a476b0565405b24d0e1e
 docker-compose exec web bash
 ```
 ```shell
+php artisan key:generate
 php artisan migrate --seed
 ```
 
