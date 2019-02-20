@@ -64,11 +64,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('report', ['as' => 'report.index', 'uses' => 'DailyReportController@index']);
     Route::get('report/{id}/show', ['as' => 'report.show', 'uses' => 'DailyReportController@show']);
 
+    Route::get('question', function () {
+        abort(404);
+    });
 
-    Route::resource('adminuser', AdminUserController::class);
-    Route::get('adminuser/{adminuser}/mailedit', ['as' => 'adminuser.mailedit', 'AdminUserController@mailedit']);
-    Route::post('adminuser/sendmail', ['as' => 'adminuser.sendmail', 'uses' => 'AdminUserController@sendmail']);
-    Route::resource('user', 'UserController', ['except' => ['create', 'store']]);
+    Route::get('user', function () {
+        abort(404);
+    });
+
+    Route::get('adminuser', function () {
+        abort(404);
+    });
+
+    Route::get('contact', function () {
+        abort(404);
+    });
+
     Route::post('password/email',['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset',['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/reset', ['as' => 'password.request', 'uses' => 'Auth\ResetPasswordController@reset']);
@@ -76,9 +87,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AdminRegisterController@adminRegister']);
     Route::get('/register/', 'Auth\AdminRegisterController@showAdminRegistrationForm');
-
-    Route::resource('user', UserController::class);
-
 
 });
 

@@ -69,13 +69,13 @@
       <div class="navbar-collapse collapse">
         <ul class="nav-left-list">
           <li>
-            <a href="{{ route('attendance.index') }}"><i class="fa fa-briefcase">&nbsp;&nbsp;勤怠</i></a>
+            <a href="{{ route('attendance.index') }}"><i class="fa fa-briefcase">勤怠</i></a>
           </li>
           <li>
-            <a href="{{ route('report.index') }}"><i class="fa fa-file-text-o">&nbsp;&nbsp;&nbsp;日報</i></a>
+            <a href="{{ route('report.index') }}"><i class="fa fa-pencil-square-o">日報</i></a>
           </li>
           <li>
-            <a href="{{ route('question.index') }}"><i class="fa fa-comments-o">&nbsp;&nbsp;質問掲示板</i></a>
+            <a href="{{ route('question.index') }}"><i class="fa fa-comments-o">質問掲示板</i></a>
           </li>
         </ul>
       </div>
