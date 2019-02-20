@@ -46,7 +46,7 @@ MAIL_ENCRYPTION=ssl
 MAIL_PRETEND=false
 SLACK_KEY=42620444977.353915109553
 SLACK_SECRET=7d76080bb20537972e1487621cf9c020
-SLACK_REDIRECT_URI=http://localhost/callback
+SLACK_REDIRECT_URI=http://localhost:8080/callback
 SLACK_API_KEY=xoxp-42620444977-362509122881-400641301381-e88a476b0565405b24d0e1ed3b31a695
 ```
 
@@ -59,6 +59,6 @@ php artisan migrate --seed
 ```
 
 ### Access URL  
-[http://localhost](http://localhost)  
+[http://localhost:8080](http://localhost:8080)  
 
 
