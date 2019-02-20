@@ -1,10 +1,12 @@
-# Greenhorn Works  
-- Use  
-  - PHP : Version >= 7.0.*  
-  - Mysql : Version >= 5.7.*  
-  - Node : Version >= v8.9.*  
+# GizLog
 
-## Installation guide  
+## Version
+
+| PHP        | Laravel     | MySQL        | Node         | npm          |
+|:----------:|:-----------:|:------------:|:------------:|:------------:|
+| 7.1.19     | 5.6.27      | 5.7.22       | >= 10.0.*    | >= 5.6.*     |
+
+## Installation guide
 - Dockerの設定ファイルを共有してもらう  
 - 任意の場所に作業用ディレクトリを作ってそこに配置  
 
@@ -12,7 +14,7 @@
 docker-compose up -d --build
 cd www
 git clone このリポジトリのURL
-cd app
+cd gizlog
 cp .env.example .env
 composer install
 ```
@@ -21,11 +23,11 @@ composer install
 ```shell
 # DB設定を以下のように編集
 DB_CONNECTION=mysql
-DB_HOST=mysql
+DB_HOST=db
 DB_PORT=3306
-DB_DATABASE=laravel
+DB_DATABASE=gizlog
 DB_USERNAME=root
-DB_PASSWORD=root
+DB_PASSWORD=
 
 # 以下を追記してください
 MAIL_ADDRESSPASS=some_word
@@ -36,7 +38,7 @@ ACCESS_RIGHT_STORE=001
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=465
-MAIL_FROM_NAME=Greenhorn_works
+MAIL_FROM_NAME=GizLog
 MAIL_FROM_ADDRESS=atsushi0202test@gmail.com
 MAIL_USERNAME=atsushi0202test@gmail.com
 MAIL_PASSWORD=hwrtwvrqwnvybxlv
@@ -50,7 +52,7 @@ SLACK_API_KEY=xoxp-42620444977-362509122881-400641301381-e88a476b0565405b24d0e1e
 
 ### migrateとseed  
 ```shell
-docker-compose exec php sh
+docker-compose exec web bash
 ```
 ```shell
 php artisan migrate --seed
@@ -58,4 +60,5 @@ php artisan migrate --seed
 
 ### Access URL  
 [http://localhost](http://localhost)  
+
 
