@@ -86,7 +86,7 @@ class QuestionController extends Controller
 
     public function destroy($questionId)
     {
-        $this->question->find($id)->delete();
+        $this->question->find($questionId)->delete();
         return redirect()->route('question.index');
     }
 
