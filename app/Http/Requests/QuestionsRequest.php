@@ -24,18 +24,19 @@ class QuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required',
+          'title'           => 'required',
           'tag_category_id' => 'required',
-          'content' => 'required',
+          'content'         => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-          'title.required' => '入力必須の項目です。',
+          'title.required'           => '入力必須の項目です。',
           'tag_category_id.required' => '入力必須の項目です。',
-          'content.required' => '入力必須の項目です。',
+          'content.required'         => '入力必須の項目です。',
         ];
     }
 }
+

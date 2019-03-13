@@ -24,8 +24,8 @@ class AttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'request_content' => 'sometimes|required',
-            'absent_reason'   => 'sometimes|required',
+            'request_content' => 'sometimes|required|max:200',
+            'absent_reason'   => 'sometimes|required|max:200',
             'date'            => 'sometimes|required',
         ];
     }
@@ -34,7 +34,9 @@ class AttendanceRequest extends FormRequest
     {
         return [
             'request_content.required' => '入力必須の項目です',
+            'request_content.max'      => '200文字以内で入力してください。',
             'absent_reason.required'   => '入力必須の項目です',
+            'absent_reason.max'        => '200文字以内で入力してください。',
             'date.required'            => '入力必須の項目です',
         ];
     }
