@@ -20,18 +20,17 @@ Route::group(['prefix' => '/'], function() {
             return view('auth/login');
         };
     });
-    Route::get('slack/login', 'Auth\AuthenticateController@slackAuth');
-    Route::get('callback', 'Auth\AuthenticateController@userinfo');
+    Route::get('slack/login', 'Auth\AuthenticateController@callSlackApi');
+    Route::get('callback', 'Auth\AuthenticateController@loginBySlackUserInfo');
 
     Route::get('home', 'UserController@index')->name('home');
-    Route::post('home', 'UserController@update')->name('home.update');
 
-    Route::resource('report', 'DailyReportController');
+    Route::resource('report', DailyReportController::class);
 
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/register/{query}', 'Auth\RegisterController@showRegistrationForm');
 
-    Route::resource('question', 'QuestionController');
+    Route::resource('question', QuestionController::class);
     Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@myPage']);
     Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
@@ -46,6 +45,7 @@ Route::group(['prefix' => '/'], function() {
     Route::post('attendance/modify', ['as' => 'attendance.modify.store', 'uses' => 'AttendanceController@storeModifyRequest']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
 });
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], function() {
     Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
