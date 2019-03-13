@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class AttendanceSeeder extends Seeder
 {
@@ -15,10 +16,10 @@ class AttendanceSeeder extends Seeder
         DB::table('attendance')->insert([
             [
                 'user_id'    => 2,
-                'start_time' => '2019-01-15 09:50:22',
-                'end_time'   => '2019-01-15 09:50:22',
+                'start_time' => Carbon::create(2019, 1, 15, 9, 50, 22),
+                'end_time'   => Carbon::create(2019, 1, 15, 19, 30, 28),
                 'absent_flg' => 0,
-                'date'       => '2019-01-15',
+                'date'       => Carbon::create(2019, 1, 15, 0, 0, 0),
             ]
         ]);
     }
