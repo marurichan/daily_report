@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Questions;
 use App\Models\TagCategory;
-use App\Models\UserInfos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use cebe\markdown\Markdown;

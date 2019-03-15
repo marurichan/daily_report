@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Mail\ApplicationMail;
 use App\Mail\PermissionMail;
 use App\Models\AdminUsers;
-use App\Models\UserInfos;
 use App\Http\Requests\AccessRightRequest;
 use Illuminate\Support\Facades\Auth;
 use Mail;

@@ -18,7 +18,7 @@ Route::group(['prefix' => '/'], function() {
             return redirect()->route('home');
         } else {
             return view('auth/login');
-        };
+        }
     });
     Route::get('slack/login', 'Auth\AuthenticateController@callSlackApi');
     Route::get('callback', 'Auth\AuthenticateController@loginBySlackUserInfo');

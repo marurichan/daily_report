@@ -23,11 +23,6 @@ class AdminUsers extends Authenticatable
 
     protected $dates = ['deleted_at'];
 
-    public function info()
-    {
-        return $this->belongsTo('App\Models\UserInfos', 'user_info_id');
-    }
-
     public function getUsersBasedOnTheConditions($inputs)
     {
         return $this->whereHas('stores');
