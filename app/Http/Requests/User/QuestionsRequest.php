@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentRequest extends FormRequest
+class QuestionsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,18 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required'
+          'title'           => 'required',
+          'tag_category_id' => 'required',
+          'content'         => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'comment.required' => '入力必須の項目です。'
+          'title.required'           => '入力必須の項目です。',
+          'tag_category_id.required' => '入力必須の項目です。',
+          'content.required'         => '入力必須の項目です。',
         ];
     }
 }

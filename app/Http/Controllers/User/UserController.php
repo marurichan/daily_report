@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,6 +22,4 @@ class UserController extends Controller
         $userInfos = $this->users->find($userId);
         return view('index', compact('userInfos'));
     }
-
 }
-

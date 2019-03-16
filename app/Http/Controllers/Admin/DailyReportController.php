@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\Admin\DailyReportsRequest;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Services\CalcDate;
 
 class DailyReportController extends Controller

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\AttendanceRequest;
 use App\Models\Attendance;
-use App\Http\Requests\AttendanceRequest;
-use Auth;
 use App\Services\CalcDate;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -24,17 +24,17 @@ class AttendanceController extends Controller
     {
         $userId = Auth::id();
         $attendance = $this->attendance->fetchSpecificDay($userId, $this->calc->today);
-        return view('attendance.index', compact('attendance'));
+        return view('user.attendance.index', compact('attendance'));
     }
 
     public function showAbsenceForm()
     {
-        return view('attendance.absence');
+        return view('user.attendance.absence');
     }
 
     public function showModifyForm()
     {
-        return view('attendance.modify');
+        return view('user.attendance.modify');
     }
 
     public function showMypage(CalcDate $calcDate)
@@ -42,7 +42,7 @@ class AttendanceController extends Controller
         $userId = Auth::id();
         $workInfos = $this->attendance->fetchPersonalRecords($userId);
         $dateSum = $calcDate->calcDatetimeSum($workInfos);
-        return view('attendance.mypage', compact('workInfos', 'dateSum'));
+        return view('user.attendance.mypage', compact('workInfos', 'dateSum'));
     }
 
     public function setStartTime(AttendanceRequest $request)

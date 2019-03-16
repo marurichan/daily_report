@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
-use Illuminate\Http\Request;
-use App\Http\Requests\DailyReportRequest;
-use Illuminate\Support\Facades\Auth;
 use App\Services\CalcDate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DailyReportController extends Controller
 {
@@ -34,12 +35,12 @@ class DailyReportController extends Controller
         } else {
             $reports = $this->report->fetchSearchingPersonalReports($userId, $inputs);
         }
-        return view('daily_report.index', compact('reports', 'inputs'));
+        return view('user.daily_report.index', compact('reports', 'inputs'));
     }
 
     public function create()
     {
-        return view('daily_report.create');
+        return view('user.daily_report.create');
     }
 
     public function store(DailyReportRequest $request)
@@ -52,13 +53,13 @@ class DailyReportController extends Controller
     public function show($id)
     {
         $report = $this->report->find($id);
-        return view('daily_report.show', compact('report'));
+        return view('user.daily_report.show', compact('report'));
     }
 
     public function edit($id)
     {
         $report = $this->report->find($id);
-        return view('daily_report.edit', compact('report'));
+        return view('user.daily_report.edit', compact('report'));
     }
 
     public function update(DailyReportRequest $request, $reportId)

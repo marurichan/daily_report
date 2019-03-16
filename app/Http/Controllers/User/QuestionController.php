@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\CommentRequest;
+use App\Http\Requests\User\QuestionsRequest;
+use App\Models\Comment;
 use App\Models\Question;
 use App\Models\TagCategory;
-use App\Models\Comment;
 use Illuminate\Http\Request;
-use App\Http\Requests\QuestionsRequest;
-use App\Http\Requests\CommentRequest;
 
 const MAX_PAGE_COUNT = 30;
 
@@ -42,13 +42,13 @@ class QuestionController extends Controller
             $questions = $this->question->orderby('created_at', 'desc')->paginate(MAX_PAGE_COUNT);
         }
 
-        return view('question.index', compact('questions', 'categories', 'inputs'));
+        return view('user.question.index', compact('questions', 'categories', 'inputs'));
     }
 
     public function create()
     {
         $categories = $this->category->all();
-        return view('question.create', compact('categories'));
+        return view('user.question.create', compact('categories'));
     }
 
     /**
@@ -67,14 +67,14 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = $this->question->find($id);
-        return view('question.show', compact('question'));
+        return view('user.question.show', compact('question'));
     }
 
     public function edit($id)
     {
         $categories = $this->category->all();
         $question = $this->question->find($id);
-        return view('question.edit', compact('question', 'categories'));
+        return view('user.question.edit', compact('question', 'categories'));
     }
 
     public function update(QuestionsRequest $request, $questionId)
@@ -93,14 +93,14 @@ class QuestionController extends Controller
     public function myPage($userId)
     {
         $questions = $this->question->fetchMyPageQuestions($userId);
-        return view('question.mypage', compact('questions'));
+        return view('user.question.mypage', compact('questions'));
     }
 
     public function confirm(QuestionsRequest $request, $questionId = null)
     {
         $inputs = $request->all();
         $category = $this->category->find($inputs['tag_category_id'])->name;
-        return view('question.confirm', compact('inputs', 'category', 'questionId'));
+        return view('user.question.confirm', compact('inputs', 'category', 'questionId'));
     }
 
     public function storeComment(CommentRequest $request)
