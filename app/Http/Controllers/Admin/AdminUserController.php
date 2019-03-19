@@ -6,5 +6,6 @@ use App\Http\Controllers\Controller;
 
 class AdminUserController extends Controller
 {
+
 }
 
