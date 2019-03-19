@@ -1,4 +1,4 @@
-@extends ('partials.outline')
+@extends ('common.user')
 @section ('content')
 
 <h2 class="brand-header">欠席登録</h2>

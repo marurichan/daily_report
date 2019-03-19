@@ -1,4 +1,4 @@
-@extends ('partials.outline')
+@extends ('common.user')
 @section ('content')
 
 <h1 class="brand-header">質問詳細</h1>

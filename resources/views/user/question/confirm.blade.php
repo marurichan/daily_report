@@ -1,4 +1,4 @@
-@extends ('partials.outline')
+@extends ('common.user')
 @section ('content')
 
 <h2 class="brand-header">投稿内容確認</h2>

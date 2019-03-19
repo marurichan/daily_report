@@ -1,4 +1,4 @@
-@extends ('partials.admin_outline')
+@extends ('common.admin')
 @section ('content')
 
 <h2 class="brand-header">個別日報一覧</h2>

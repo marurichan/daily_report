@@ -1,4 +1,4 @@
-@extends ('partials.admin_outline')
+@extends ('common.admin')
 @section ('content')
 
 <h2 class="brand-header">個別勤怠管理</h2>

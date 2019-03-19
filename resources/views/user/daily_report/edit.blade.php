@@ -1,4 +1,4 @@
-@extends ('partials.outline')
+@extends ('common.user')
 @section ('content')
 
 <h1 class="brand-header">日報編集</h1>

@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         $userId = Auth::id();
         $userInfos = $this->users->find($userId);
-        return view('index', compact('userInfos'));
+        return view('user.home.index', compact('userInfos'));
     }
 }
+
