@@ -45,6 +45,9 @@ class QuestionController extends Controller
         return view('user.question.index', compact('questions', 'categories', 'inputs'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $categories = $this->category->all();
@@ -64,12 +67,20 @@ class QuestionController extends Controller
         return redirect()->route('question.index');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $question = $this->question->find($id);
         return view('user.question.show', compact('question'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $categories = $this->category->all();
@@ -77,6 +88,11 @@ class QuestionController extends Controller
         return view('user.question.edit', compact('question', 'categories'));
     }
 
+    /**
+     * @param QuestionsRequest $request
+     * @param $questionId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(QuestionsRequest $request, $questionId)
     {
         $inputs = $request->all();
@@ -84,18 +100,31 @@ class QuestionController extends Controller
         return redirect()->route('question.index');
     }
 
+    /**
+     * @param $questionId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($questionId)
     {
         $this->question->find($questionId)->delete();
         return redirect()->route('question.index');
     }
 
+    /**
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function myPage($userId)
     {
         $questions = $this->question->fetchMyPageQuestions($userId);
         return view('user.question.mypage', compact('questions'));
     }
 
+    /**
+     * @param QuestionsRequest $request
+     * @param null $questionId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function confirm(QuestionsRequest $request, $questionId = null)
     {
         $inputs = $request->all();
@@ -103,6 +132,10 @@ class QuestionController extends Controller
         return view('user.question.confirm', compact('inputs', 'category', 'questionId'));
     }
 
+    /**
+     * @param CommentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeComment(CommentRequest $request)
     {
         $inputs = $request->all();

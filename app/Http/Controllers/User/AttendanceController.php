@@ -20,6 +20,9 @@ class AttendanceController extends Controller
         $this->calc = $calc;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $userId = Auth::id();
@@ -27,16 +30,26 @@ class AttendanceController extends Controller
         return view('user.attendance.index', compact('attendance'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAbsenceForm()
     {
         return view('user.attendance.absence');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showModifyForm()
     {
         return view('user.attendance.modify');
     }
 
+    /**
+     * @param CalcDate $calcDate
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showMypage(CalcDate $calcDate)
     {
         $userId = Auth::id();
@@ -45,6 +58,10 @@ class AttendanceController extends Controller
         return view('user.attendance.mypage', compact('workInfos', 'dateSum'));
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setStartTime(AttendanceRequest $request)
     {
         $inputs = $request->all();
@@ -52,6 +69,11 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @param $recordId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setEndTime(AttendanceRequest $request, $recordId)
     {
         $inputs = $request->all();
@@ -59,6 +81,10 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function registerAbsence(AttendanceRequest $request)
     {
         $inputs = $request->all();
@@ -66,6 +92,10 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @param AttendanceRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeModifyRequest(AttendanceRequest $request)
     {
         $inputs = $request->all();

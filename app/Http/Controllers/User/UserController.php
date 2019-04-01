@@ -10,12 +10,19 @@ class UserController extends Controller
 {
     public $users;
 
+    /**
+     * UserController constructor.
+     * @param User $users
+     */
     public function __construct(User $users)
     {
         $this->middleware('auth');
         $this->users = $users;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $userId = Auth::id();

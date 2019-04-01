@@ -20,12 +20,19 @@ class DailyReportController extends Controller
         $this->calc = $calc;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $users = $this->user->all();
         return view('admin.daily_report.index', compact('users'));
     }
 
+    /**
+     * @param $userId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($userId)
     {
         $reports = $this->report->fetchAllPersonalReports($userId);

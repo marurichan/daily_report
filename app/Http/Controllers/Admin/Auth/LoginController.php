@@ -16,21 +16,33 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLoginForm()
     {
         return view('admin.auth.login');
     }
 
+    /**
+     * @return mixed
+     */
     public function guard()
     {
         return Auth::guard('admin');
     }
 
+    /**
+     * @return string
+     */
     public function username()
     {
         return 'name';
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         $this->guard()->logout();

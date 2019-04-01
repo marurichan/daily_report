@@ -16,6 +16,9 @@ class AuthenticateController extends Controller
         $this->users = $users;
     }
 
+    /**
+     * @return mixed
+     */
     public function callSlackApi()
     {
         return Socialite::with('slack')->scopes([
@@ -25,6 +28,9 @@ class AuthenticateController extends Controller
         ])->redirect();
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function loginBySlackUserInfo()
     {
         if (array_key_exists('error', $_GET)) {
