@@ -40,8 +40,6 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('attendance/modify', ['as' => 'attendance.modify.store', 'uses' => 'AttendanceController@storeModifyRequest']);
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
 
-    Route::resource('report', DailyReportController::class);
-
     Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@myPage']);
     Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/{id}/confirm', ['as' => 'confirm.update', 'uses' => 'QuestionController@confirm']);
@@ -58,7 +56,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
     Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-    Route::resource('report', DailyReportController::class, ['only' => ['index', 'show']]);
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
@@ -67,8 +64,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('attendance/{id}/user/edit/{date}', ['as' => 'attendance.user.edit', 'uses' => 'AttendanceController@edit']);
     Route::post('attendance/{id}/user', ['as' => 'attendance.user.store', 'uses' => 'AttendanceController@store']);
     Route::put('attendance/{id}/user', ['as' => 'attendance.user.update', 'uses' => 'AttendanceController@update']);
-    Route::get('report', ['as' => 'report.index', 'uses' => 'DailyReportController@index']);
-    Route::get('report/{id}/show', ['as' => 'report.show', 'uses' => 'DailyReportController@show']);
 
     Route::get('question', function () {
         abort(404);
