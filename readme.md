@@ -1,65 +1,49 @@
-# GizLog
+# 課題（日報機能）
 
-## Version
+## 準備
 
-| PHP        | Laravel     | MySQL        | Node         | npm          |
-|:----------:|:-----------:|:------------:|:------------:|:------------:|
-| 7.1.19     | 5.6.27      | 5.7.22       | >= 10.0.*    | >= 5.6.*     |
-
-## Installation guide
-- Dockerの設定ファイルを共有してもらう  
-- 任意の場所に作業用ディレクトリを作ってそこに配置  
-
+下記のコマンドを入力してDBを初期化し、課題用のブランチに切り替えましょう。
 ```shell
-docker-compose up -d
-cd www
-git clone このリポジトリのURL
-cd gizlog
-cp .env.example .env
-composer install
-```
-### .env の編集  
-
-```shell
-# DB設定を以下のように編集
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=gizlog
-DB_USERNAME=root
-DB_PASSWORD=
-
-# 以下を追記してください
-MAIL_ADDRESSPASS=some_word
-MAIL_PRIVILEGES=some_word
-ACCESS_RIGHT_ADMIN=100
-ACCESS_RIGHT_USER=010
-ACCESS_RIGHT_STORE=001
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=465
-MAIL_FROM_NAME=GizLog
-MAIL_FROM_ADDRESS=atsushi0202test@gmail.com
-MAIL_USERNAME=atsushi0202test@gmail.com
-MAIL_PASSWORD=hwrtwvrqwnvybxlv
-MAIL_ENCRYPTION=ssl
-MAIL_PRETEND=false
-SLACK_KEY=42620444977.353915109553
-SLACK_SECRET=7d76080bb20537972e1487621cf9c020
-SLACK_REDIRECT_URI=http://localhost:8080/callback
-SLACK_API_KEY=xoxp-42620444977-362509122881-400641301381-e88a476b0565405b24d0e1ed3b31a695
+php artisan migrate:reset
+git stash  # masterブランチで変更した点があれば一度退避させます
+git checkout -b lesson_daily_report origin/lesson_daily_report
 ```
 
-### migrateとseed  
-```shell
-docker-compose exec web bash
-```
-```shell
-php artisan key:generate
-php artisan migrate --seed
-```
+```git branch```と入力して、```lesson_daily_report```に切り替わっていることを確認してください。  
+再度GizLogを開くと、日報画面が開けなくなっているはずです。
 
-### Access URL  
-[http://localhost:8080](http://localhost:8080)  
+## 課題内容
+キャプチャを元に、ユーザー側と管理者側の日報機能を作成しましょう。  
+```view/daily_report/```に静的ページは用意してあります。
+
+#### 一覧画面
+<p align="center"><img src="https://res.cloudinary.com/gizumo-inc/image/upload/v1554351080/curriculums/GizLog/%E6%97%A5%E5%A0%B1%E4%B8%80%E8%A6%A7.png"></p>  
+
+#### 作成画面
+<p align="center"><img src="https://res.cloudinary.com/gizumo-inc/image/upload/v1554351080/curriculums/GizLog/%E6%97%A5%E5%A0%B1%E4%BD%9C%E6%88%90.png"></p>  
+
+#### 詳細画面
+<p align="center"><img src="https://res.cloudinary.com/gizumo-inc/image/upload/v1554351080/curriculums/GizLog/%E6%97%A5%E5%A0%B1%E8%A9%B3%E7%B4%B0.png"></p>
+
+#### 編集画面
+<p align="center"><img src="https://res.cloudinary.com/gizumo-inc/image/upload/v1554351080/curriculums/GizLog/%E6%97%A5%E5%A0%B1%E7%B7%A8%E9%9B%86.png"></p>
+
+#### バリデーションエラー時
+<p align="center"><img src="https://res.cloudinary.com/gizumo-inc/image/upload/v1554346457/curriculums/GizLog/%E6%97%A5%E5%A0%B1%E6%9C%AA%E5%85%A5%E5%8A%9B.png"></p>
 
 
+## テーブル構造
+
+下記の内容のテーブルを作成しましょう。
+
+テーブル名：daily_report  
+
+|column名|説明|
+|:-----|:-----|
+|user_id|日報の投稿者|
+|title|日報のタイトル|
+|contents|日報の内容|
+|reporting_time|日報の日付|
+|created_at|登録日時|
+|updated_at|更新日時|
+|deleted_at|削除日時|
