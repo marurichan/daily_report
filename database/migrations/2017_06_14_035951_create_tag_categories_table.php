@@ -6,29 +6,30 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTagCategoriesTable extends Migration
 {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('tag_categories', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tag_categories', function(Blueprint $table) {
             $table->increments('id');
-			$table->string('name');
+            $table->string('name');
             $table->timestamps();
-			$table->softDeletes();
-		});
-	}
+            $table->softDeletes();
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('tag_categories');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('tag_categories');
+    }
 
 }
+
