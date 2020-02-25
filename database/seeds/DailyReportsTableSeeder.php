@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DailyReportsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class DailyReportsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\DailyReport::class, 100)->create();
     }
 }

@@ -6,8 +6,8 @@
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
     {!! Form::open(['route' => 'report.index', 'method' => 'GET']) !!}
-    {!! Form::input('month', 'search-month', 'null', ['class' => 'form-control']) !!}
-    {!! Form::button('<i class="fa fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-icon']) !!}
+      {!! Form::input('month', 'search-month', 'null', ['class' => 'form-control']) !!}
+      {!! Form::button('<i class="fa fa-search"></i>', ['type' => 'submit', 'class' => 'btn btn-icon']) !!}
     {!! Form::close() !!}
     <a class="btn btn-icon" href="{{ route('report.create') }}"><i class="fa fa-plus"></i></a>
   </div>
@@ -32,8 +32,8 @@
       @endforeach
       </tbody>
     </table>
+    {{ $dailys->appends(request()->input())->links() }}
   </div>
 </div>
 
 @endsection
-

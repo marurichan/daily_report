@@ -26,4 +26,5 @@ class DailyReport extends Model
     {
         return $this->where('user_id', $id)->get();
     }
+
 }

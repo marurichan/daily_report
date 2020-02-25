@@ -8,31 +8,34 @@ use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
     private $dailyreport;
 
-    public function __construct(DailyReport $instanceClass)
+    public function __construct(DailyReport $dbDailyReport)
     {
         $this->middleware('auth');
-        $this->daily = $instanceClass;   
+        $this->daily = $dbDailyReport;
     }
     /**
-     * Display a listing of the resource.
+     * リソースのリスト表示
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $dailys = $this->daily->all();
-        //dd($dailys);
+        $searchMonth = $request->input('search-month');
+        $dailys = $this->daily->where('reporting_time', 'LIKE', $searchMonth . '%')
+                                    ->orderBy('reporting_time', 'desc')
+                                    ->paginate(10);
         $user = Auth::user();
         return view('user.daily_report.index',compact('dailys','user'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 新しいリソースを作成するためのフォームを表示
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,23 +45,30 @@ class ReportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新しく作成したリソースをストレージに保存
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $path = parse_url($_SERVER['HTTP_REFERER']);
         $input = $request->all();
-        // dd($input);
-        // dd($this->daily->fill($input)->save);
         $input['user_id'] = Auth::id();
-        $this->daily->fill($input)->save();
-        return redirect()->to('report');
+        $validation = $this->validates($input);
+        switch($path['path']) {
+            case '/report/create':
+                $this->daily->fill($input)->save();
+                return redirect()->route('report.index');
+            break;
+            case "/report/{$input['id']}/edit":
+                return $this->update($request, $input);
+            break;
+        }
     }
 
     /**
-     * Display the specified resource.
+     * 指定されたリソースを表示
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -70,38 +80,47 @@ class ReportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     *指定したリソースを編集するためのフォームを表示
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        
         $report = $this->daily->find($id);
         return view('user.daily_report.edit', compact('report'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * ストレージ内の指定されたリソースを更新
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $input)
     {
-        //
+        $this->daily->find($input['id'])->fill($input)->save();
+        return redirect()->route('report.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 指定されたリソースをストレージから削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $this->daily->find($id)->delete();
+        return redirect()->route('report.index');
+    }
+
+    /**
+     * バリデーション
+     */
+    public function validates($request)
+    {
+        $validation = Validator::make($request, DailyReportRequest::rules()[0], DailyReportRequest::rules()[1])->validate();
     }
 }
