@@ -19,37 +19,23 @@ class ReportController extends Controller
         $this->middleware('auth');
         $this->daily = $dbDailyReport;
     }
-    /**
-     * リソースのリスト表示
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $searchMonth = $request->input('search-month');
+        $user = Auth::id();
         $dailys = $this->daily->where('reporting_time', 'LIKE', $searchMonth . '%')
+                                    ->where('user_id', '=', $user)
                                     ->orderBy('reporting_time', 'desc')
                                     ->paginate(10);
-        $user = Auth::user();
-        return view('user.daily_report.index',compact('dailys','user'));
+        return view('user.daily_report.index',compact('dailys'));
     }
 
-    /**
-     * 新しいリソースを作成するためのフォームを表示
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('user.daily_report.create');
     }
 
-    /**
-     * 新しく作成したリソースをストレージに保存
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $path = parse_url($_SERVER['HTTP_REFERER']);
@@ -67,60 +53,37 @@ class ReportController extends Controller
         }
     }
 
-    /**
-     * 指定されたリソースを表示
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $report = $this->daily->find($id);
         return view('user.daily_report.show', compact('report'));
     }
 
-    /**
-     *指定したリソースを編集するためのフォームを表示
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $report = $this->daily->find($id);
         return view('user.daily_report.edit', compact('report'));
     }
 
-    /**
-     * ストレージ内の指定されたリソースを更新
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $input)
     {
         $this->daily->find($input['id'])->fill($input)->save();
         return redirect()->route('report.index');
     }
 
-    /**
-     * 指定されたリソースをストレージから削除
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $this->daily->find($id)->delete();
         return redirect()->route('report.index');
     }
 
-    /**
-     * バリデーション
-     */
-    public function validates($request)
+    public function validates($input)
     {
-        $validation = Validator::make($request, DailyReportRequest::rules()[0], DailyReportRequest::rules()[1])->validate();
+        $valid = new DailyReportRequest();
+        $validation = Validator::make(
+            $input,
+            $valid->rules(),
+            $valid->messages()
+        )->validate();
     }
 }
