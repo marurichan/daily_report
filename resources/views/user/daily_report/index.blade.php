@@ -1,7 +1,6 @@
 @extends ('common.user')
 @section ('content')
 
-
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
