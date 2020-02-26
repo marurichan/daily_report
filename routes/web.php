@@ -48,7 +48,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('report', ['as' => 'report.index', 'uses' => 'ReportController@index']);
     Route::get('report/create', ['as' => 'report.create', 'uses' => 'ReportController@create']);
     Route::post('report', ['as' => 'report.store', 'uses' => 'ReportController@store']);
-    Route::put('report/{report}', ['as' => 'report.update', 'uses' => 'ReportController@update']);
+    Route::put('report/{report}/update', ['as' => 'report.update', 'uses' => 'ReportController@update']);
     Route::get('report/{report}', ['as' => 'report.show', 'uses' => 'ReportController@show']);
     Route::get('report/{report}/edit', ['as' => 'report.edit', 'uses' => 'ReportController@edit']);
     Route::delete('report/{report}', ['as' => 'report.destroy', 'uses' => 'ReportController@destroy']);
