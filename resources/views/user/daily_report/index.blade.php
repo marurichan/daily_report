@@ -21,17 +21,17 @@
         </tr>
       </thead>
       <tbody>
-      @foreach($dailys as $daily)
+      @foreach($dailyReports as $dailyReport)
           <tr class="row">
-            <td class="col-xs-2">{{ $daily->reporting_time->format('m/d(D)') }}</td>
-            <td class="col-xs-3">{{ $daily->title }}</td>
-            <td class="col-xs-5">{{ $daily->content }}</td>
-            <td class="col-xs-2"><a class="btn" href="{{ route('report.show', ['id' => $daily->id]) }}"><i class="fa fa-book"></i></a></td>
+            <td class="col-xs-2">{{ $dailyReport->reporting_time->format('m/d(D)') }}</td>
+            <td class="col-xs-3">{{ $dailyReport->title }}</td>
+            <td class="col-xs-5">{{ $dailyReport->content }}</td>
+            <td class="col-xs-2"><a class="btn" href="{{ route('report.show', ['id' => $dailyReport->id]) }}"><i class="fa fa-book"></i></a></td>
           </tr>
       @endforeach
       </tbody>
     </table>
-    {{ $dailys->appends(request()->input())->links() }}
+    {{ $dailyReports->appends(request()->input())->links() }}
   </div>
 </div>
 

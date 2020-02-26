@@ -4,7 +4,7 @@
 <h1 class="brand-header">日報編集</h1>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'report.store']) !!}
+    {!! Form::open(['route' => ['report.update', $report->id], 'method' => 'PUT']) !!}
       {!! Form::input('hidden', 'user_id', '1', ['class' => 'form-control']) !!}
       {!! Form::input('hidden', 'id', $report->id, ['class' => 'form-control']) !!}
       <div class="form-group form-size-small">
