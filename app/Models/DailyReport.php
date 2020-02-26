@@ -16,6 +16,7 @@ class DailyReport extends Model
         'content',
         'reporting_time',
     ];
+    
     protected $dates = [
         'created_at',
         'updated_at',

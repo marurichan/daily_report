@@ -34,7 +34,7 @@ class ReportController extends Controller
                                             ->where('user_id', '=', $user)
                                             ->orderBy('reporting_time', 'desc')
                                             ->paginate(paginateCount);
-        return view('user.daily_report.index',compact('dailyReports'));
+        return view('user.daily_report.index', compact('dailyReports', 'searchMonth'));
     }
 
     /**
