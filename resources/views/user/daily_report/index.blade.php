@@ -31,7 +31,7 @@
         @endforeach
       </tbody>
     </table>
-    {{ $dailyReports->appends(request()->input())->links() }}
+    {{ $dailyReports->appends(request()->all())->links() }}
   </div>
 </div>
 

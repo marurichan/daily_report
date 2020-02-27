@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Validator;
 class ReportController extends Controller
 {
     private $dailyReport;
+    const paginateCount = 10;
 
-    public function __construct(DailyReport $dbDailyReport)
+    public function __construct(DailyReport $dailyReport)
     {
         $this->middleware('auth');
-        $this->dailyReport = $dbDailyReport;
+        $this->dailyReport = $dailyReport;
     }
 
     /**
@@ -29,11 +30,10 @@ class ReportController extends Controller
     {
         $searchMonth = $request->input('search-month');
         $user = Auth::id();
-        define('paginateCount', 10);
         $dailyReports = $this->dailyReport->where('reporting_time', 'LIKE', $searchMonth . '%')
-                                            ->where('user_id', '=', $user)
-                                            ->orderBy('reporting_time', 'desc')
-                                            ->paginate(paginateCount);
+                                          ->where('user_id', $user)
+                                          ->orderBy('reporting_time', 'desc')
+                                          ->paginate(self::paginateCount);
         return view('user.daily_report.index', compact('dailyReports', 'searchMonth'));
     }
 
@@ -50,14 +50,13 @@ class ReportController extends Controller
     /**
      * バリデーションとデータの保存
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\DailyReportRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(DailyReportRequest $request)
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $validation = $this->validates($input);
         $this->dailyReport->fill($input)->save();
         return redirect()->route('report.index');
     }
@@ -89,15 +88,14 @@ class ReportController extends Controller
     /**
      * 日報編集保存
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\DailyReportRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(DailyReportRequest $request, $id)
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $validation = $this->validates($input);
-        $this->dailyReport->find($input['id'])->fill($input)->save();
+        $this->dailyReport->find($id)->fill($input)->save();
         return redirect()->route('report.index');
     }
 
@@ -113,19 +111,4 @@ class ReportController extends Controller
         return redirect()->route('report.index');
     }
 
-    /**
-     * バリデーション
-     *
-     * @param  obj $input 入力内容
-     * @return \Illuminate\Support\Facades\Validator
-     */
-    public function validates($input)
-    {
-        $valid = new DailyReportRequest();
-        Validator::make(
-            $input,
-            $valid->rules(),
-            $valid->messages()
-        )->validate();
-    }
 }
