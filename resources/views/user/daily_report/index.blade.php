@@ -22,12 +22,12 @@
       </thead>
       <tbody>
         @foreach($dailyReports as $dailyReport)
-            <tr class="row">
-              <td class="col-xs-2">{{ $dailyReport->reporting_time->format('m/d(D)') }}</td>
-              <td class="col-xs-3">{{ str_limit($dailyReport->title, 30) }}</td>
-              <td class="col-xs-5">{{ str_limit($dailyReport->content, 50) }}</td>
-              <td class="col-xs-2"><a class="btn" href="{{ route('report.show', ['id' => $dailyReport->id]) }}"><i class="fa fa-book"></i></a></td>
-            </tr>
+        <tr class="row">
+          <td class="col-xs-2">{{ $dailyReport->reporting_time->format('m/d(D)') }}</td>
+          <td class="col-xs-3">{{ str_limit($dailyReport->title, 30) }}</td>
+          <td class="col-xs-5">{{ str_limit($dailyReport->content, 50) }}</td>
+          <td class="col-xs-2"><a class="btn" href="{{ route('report.show', ['id' => $dailyReport->id]) }}"><i class="fa fa-book"></i></a></td>
+        </tr>
         @endforeach
       </tbody>
     </table>

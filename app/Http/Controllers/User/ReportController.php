@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
 use App\Models\DailyReport;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
@@ -29,16 +28,15 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $searchMonth = $request->input('search-month');
-        $user = Auth::id();
         $dailyReports = $this->dailyReport->where('reporting_time', 'LIKE', $searchMonth . '%')
-                                          ->where('user_id', $user)
+                                          ->where('user_id', Auth::id())
                                           ->orderBy('reporting_time', 'desc')
                                           ->paginate(self::paginateCount);
         return view('user.daily_report.index', compact('dailyReports', 'searchMonth'));
     }
 
     /**
-     *新規作成画面の表示
+     * 新規作成画面の表示
      *
      * @return \Illuminate\View\View
      */
